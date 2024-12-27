@@ -1,0 +1,61 @@
+--x---x----------xx-xxxx----------x--- addExpanded
+- seg=11 span=21 ptT=21  t=0 pt=(127,321) coin span=22 ptT=22  t=1 pt=(6840,270) coin operand
++ seg=12 span=63 ptT=63  t=3.12602602981e-07 pt=(127,321) coin span=23 ptT=23  t=0 pt=(6840,270) coin operand
+- seg=13 span=40 ptT=40  t=0.999999891031 pt=(210.910217285,74.8968811035) coin span=56 ptT=56  t=0.999999897768 pt=(360,1024) coin operand
++ seg=8 span=15 ptT=15  t=0 pt=(213.229446411,572.949035645) coin span=16 ptT=16  t=1 pt=(360,1024) coin xor
+- seg=8 span=15 ptT=15  t=0 pt=(213.229446411,572.949035645) coin span=16 ptT=16  t=1 pt=(360,1024) coin xor
++ seg=12 span=39 ptT=39  t=3.08641951196e-07 pt=(211.962463379,300.864105225) coin span=55 ptT=55  t=3.01905368717e-07 pt=(360,1024) coin operand
+- seg=13 span=54 ptT=54  t=0.999999885772 pt=(100,512) coin span=40 ptT=40  t=0.999999891031 pt=(210.910217285,74.8968811035) coin operand
++ seg=7 span=13 ptT=13  t=0 pt=(100,512) coin span=14 ptT=14  t=1 pt=(213.229446411,572.949035645) coin xor
+- seg=7 span=13 ptT=13  t=0 pt=(100,512) coin span=14 ptT=14  t=1 pt=(213.229446411,572.949035645) coin xor
++ seg=12 span=51 ptT=51  t=3.13901276281e-07 pt=(100,512) coin span=39 ptT=39  t=3.08641951196e-07 pt=(211.962463379,300.864105225) coin operand
+- seg=13 span=53 ptT=53  t=0.999999883081 pt=(40.1835670471,75.6918945312) coin span=54 ptT=54  t=0.999999885772 pt=(100,512) coin operand
++ seg=6 span=52 ptT=52  t=0.120346554966 pt=(40.1835670471,75.6918945312) coin span=12 ptT=12  t=1 pt=(100,512) coin xor
+- seg=6 span=49 ptT=49  t=0.575644853912 pt=(71.1438522339,301.519836426) coin span=12 ptT=12  t=1 pt=(100,512) coin xor
++ seg=12 span=50 ptT=50  t=3.15199326443e-07 pt=(71.1438522339,301.519836426) coin span=51 ptT=51  t=3.13901276281e-07 pt=(100,512) coin operand
+- seg=13 span=46 ptT=46  t=0.999999883604 pt=(51.4065437317,75.6396331787) coin span=40 ptT=40  t=0.999999891031 pt=(210.910217285,74.8968811035) coin operand
++ seg=5 span=45 ptT=45  t=0.892917257393 pt=(51.4065475464,75.6396331787) coin span=9 ptT=9  t=0 pt=(213.229446411,572.949035645) coin xor
+- seg=5 span=9 ptT=9  t=0 pt=(213.229446411,572.949035645) coin span=43 ptT=43  t=0.487798966391 pt=(124.825912476,301.269866943) coin xor
++ seg=12 span=39 ptT=39  t=3.08641951196e-07 pt=(211.962463379,300.864105225) coin span=44 ptT=44  t=3.12699561536e-07 pt=(124.825912476,301.269866943) coin operand
+- seg=13 span=40 ptT=40  t=0.999999891031 pt=(210.910217285,74.8968811035) coin span=38 ptT=38  t=0.99999991902 pt=(811.965698242,72.0980072021) coin operand
++ seg=4 span=8 ptT=8  t=1 pt=(213.229446411,572.949035645) coin span=7 ptT=7  t=0 pt=(815.808349609,897.30456543) coin xor
+- seg=4 span=7 ptT=7  t=0 pt=(815.808349609,897.30456543) coin span=8 ptT=8  t=1 pt=(213.229446411,572.949035645) coin xor
++ seg=12 span=37 ptT=37  t=2.80653133423e-07 pt=(813.017944336,298.065246582) coin span=39 ptT=39  t=3.08641951196e-07 pt=(211.962463379,300.864105225) coin operand
+- seg=13 span=38 ptT=38  t=0.99999991902 pt=(811.965698242,72.0980072021) coin span=32 ptT=32  t=0.999999923357 pt=(905.094726562,71.6643371582) coin operand
++ seg=3 span=6 ptT=6  t=1 pt=(815.808349609,897.30456543) coin span=5 ptT=5  t=0 pt=(905.953125,255.999786377) coin xor
+- seg=3 span=35 ptT=35  t=0.064961246662 pt=(900.097229004,297.659759521) coin span=6 ptT=6  t=1 pt=(815.808349609,897.30456543) coin xor
++ seg=12 span=36 ptT=36  t=2.7659818996e-07 pt=(900.097229004,297.659759521) coin span=37 ptT=37  t=2.80653133423e-07 pt=(813.017944336,298.065246582) coin operand
+- seg=9 span=17 ptT=17  t=0 pt=(360,1024) coin span=18 ptT=18  t=1 pt=(360,4140) coin xor
++ seg=10 span=31 ptT=31  t=1.45099777393e-06 pt=(360,1024) coin span=19 ptT=19  t=0 pt=(360,4140) coin xor
+
+SkOpSegment::addT insert t=3.12405367e-07 segID=12 spanID=67
+SkOpSegment::addT insert t=0.0126699258 segID=11 spanID=68
+SkOpSegment::addT insert t=0.0290228849 segID=11 spanID=69
+SkOpSegment::addT insert t=0.0320585186 segID=11 spanID=70
+SkOpSegment::addT insert t=0.0342199142 segID=11 spanID=71
+SkOpSegment::addT insert t=3.0175255e-07 segID=12 spanID=72
+SkOpSegment::addT insert t=0.102204746 segID=11 spanID=73
+SkOpSegment::addT insert t=2.76716432e-07 segID=12 spanID=74
+SkOpSegment::addT insert t=0.115176306 segID=11 spanID=75
+SkOpSegment::addT insert t=0.899702926 segID=8 spanID=76
+SkOpSegment::addT insert t=0.758838213 segID=8 spanID=77
+SkOpSegment::addT insert t=0.246927782 segID=7 spanID=78
+SkOpSegment::addT insert t=0.228492228 segID=7 spanID=79
+SkOpSegment::addT insert t=0.284429982 segID=7 spanID=80
+SkOpSegment::addT insert t=0.291197031 segID=6 spanID=81
+SkOpSegment::addT insert t=0.999999884 segID=13 spanID=82
+SkOpSegment::addT insert t=0.788316424 segID=5 spanID=83
+SkOpSegment::addT insert t=0.632267074 segID=5 spanID=84
+SkOpSegment::addT insert t=0.999999887 segID=13 spanID=85
+SkOpSegment::addT insert t=0.476142764 segID=5 spanID=86
+SkOpSegment::addT insert t=0.999999887 segID=13 spanID=87
+SkOpSegment::addT insert t=0.999999887 segID=13 spanID=88
+SkOpSegment::addT insert t=3.12411385e-07 segID=12 spanID=89
+SkOpSegment::addT insert t=0.783451987 segID=4 spanID=90
+SkOpSegment::addT insert t=0.759311649 segID=4 spanID=91
+SkOpSegment::addT insert t=0.999999898 segID=13 spanID=92
+SkOpSegment::addT insert t=0.753851653 segID=4 spanID=93
+SkOpSegment::addT insert t=3.01824696e-07 segID=12 spanID=94
+SkOpSegment::addT insert t=0.817356482 segID=4 spanID=95
+SkOpSegment::addT insert t=0.999999923 segID=13 spanID=96
+SkOpSegment::addT insert t=0.999999923 segID=13 spanID=97

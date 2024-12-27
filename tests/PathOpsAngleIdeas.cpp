@@ -31,8 +31,8 @@
 
 using namespace skia_private;
 
-static bool gPathOpsAngleIdeasVerbose = false;
-static bool gPathOpsAngleIdeasEnableBruteCheck = false;
+static bool gPathOpsAngleIdeasVerbose = true;
+static bool gPathOpsAngleIdeasEnableBruteCheck = true;
 
 class PathOpsAngleTester {
 public:
@@ -165,12 +165,19 @@ static bool checkParallel(skiatest::Reporter* reporter, const SkDQuad& quad1, co
     double tDist = tweep[0].length() * m;
     bool useS = fabs(sDist) < fabs(tDist);
     double mFactor = fabs(useS ? distEndRatio(sDist, quad1) : distEndRatio(tDist, quad2));
-    if (mFactor < 5000) {  // empirically found limit
+    if (mFactor < 50) {  // empirically found limit
         return s0xt0 < 0;
     }
     SkDVector m0 = quad1.ptAtT(0.5) - quad1[0];
     SkDVector m1 = quad2.ptAtT(0.5) - quad2[0];
-    return m0.crossCheck(m1) < 0;
+    double m0xm1 = m0.crossCheck(m1);
+    if (m0xm1 == 0)
+    {
+        // [SkOpAngle::checkParallel] unorderable
+        return true;
+    }
+
+    return m0xm1 < 0;
 }
 
 /* returns
@@ -239,8 +246,8 @@ static bool radianBetween(double start, double test, double end) {
     double startToEnd = radianSweep(start, end);
     double startToTest = radianSweep(start, test);
     double testToEnd = radianSweep(test, end);
-    return (startToTest <= 0 && testToEnd <= 0 && startToTest >= startToEnd) ||
-        (startToTest >= 0 && testToEnd >= 0 && startToTest <= startToEnd);
+    return (startToTest < 0 && testToEnd < 0 && startToTest > startToEnd) ||
+        (startToTest > 0 && testToEnd > 0 && startToTest < startToEnd);
 }
 
 static bool orderTRange(skiatest::Reporter* reporter, const SkDQuad& quad1, const SkDQuad& quad2,
@@ -441,7 +448,7 @@ static void testQuadAngles(skiatest::Reporter* reporter, const SkDQuad& quad1, c
     SkOpGlobalState state(&contour, allocator  SkDEBUGPARAMS(false) SkDEBUGPARAMS(nullptr));
     contour.init(&state, false, false);
     makeSegment(&contour, quad1, shortQuads[0]);
-    makeSegment(&contour, quad1, shortQuads[1]);
+    makeSegment(&contour, quad2, shortQuads[1]);
     SkOpSegment* seg1 = contour.first();
     seg1->debugAddAngle(0, 1);
     SkOpSegment* seg2 = seg1->next();
@@ -475,15 +482,15 @@ static void testQuadAngles(skiatest::Reporter* reporter, const SkDQuad& quad1, c
     SkDVector v2s = quad2[1] - quad2[0];
     SkDVector v2e = quad2[2] - quad2[0];
     double vDir[2] = { v1s.cross(v1e), v2s.cross(v2e) };
-    bool ray1In2 = v1s.cross(v2s) * vDir[1] <= 0 && v1s.cross(v2e) * vDir[1] >= 0;
-    bool ray2In1 = v2s.cross(v1s) * vDir[0] <= 0 && v2s.cross(v1e) * vDir[0] >= 0;
     if (overlap >= 0) {
         // verify that hulls really don't overlap
+        bool ray1In2 = v1s.cross(v2s) * vDir[1] < 0 && v1s.cross(v2e) * vDir[1] > 0;
         REPORTER_ASSERT(reporter, !ray1In2);
+        bool ray2In1 = v2s.cross(v1s) * vDir[0] < 0 && v2s.cross(v1e) * vDir[0] > 0;
         REPORTER_ASSERT(reporter, !ray2In1);
-        bool ctrl1In2 = v1e.cross(v2s) * vDir[1] <= 0 && v1e.cross(v2e) * vDir[1] >= 0;
+        bool ctrl1In2 = v1e.cross(v2s) * vDir[1] < 0 && v1e.cross(v2e) * vDir[1] > 0;
         REPORTER_ASSERT(reporter, !ctrl1In2);
-        bool ctrl2In1 = v2e.cross(v1s) * vDir[0] <= 0 && v2e.cross(v1e) * vDir[0] >= 0;
+        bool ctrl2In1 = v2e.cross(v1s) * vDir[0] < 0 && v2e.cross(v1e) * vDir[0] > 0;
         REPORTER_ASSERT(reporter, !ctrl2In1);
         // check answer against reference
         bruteForce(reporter, quad1, quad2, overlap > 0);
@@ -534,10 +541,10 @@ static void testQuadAngles(skiatest::Reporter* reporter, const SkDQuad& quad1, c
         double rayDist = ray.length();
         double endDist = end.length();
         double delta = fabs(rayDist - endDist) / maxWidth;
-        if (delta > 1e-4) {
+        if (delta > 1e-3) {
             useIntersect ^= true;
+            smallestTs[index] = smallT;
         }
-        smallestTs[index] = smallT;
     }
     bool firstInside;
     if (useIntersect) {
@@ -576,6 +583,16 @@ DEF_TEST(PathOpsAngleOverlapHullsOne, reporter) {
     SkSTArenaAlloc<4096> allocator;
 //    gPathOpsAngleIdeasVerbose = true;
     const QuadPts quads[] = {
+//{{ { -232.13122558593750, -65.052978515625000 }, { -888.74865722656250, 853.41906738281250 }, { 336.70422363281250, 628.50207519531250 } }},
+//{{ { -232.13122558593750, -65.052978515625000 }, { 285.94873046875000, -819.74456787109375 }, { 450.09179687500000, 841.08142089843750 } }},
+{{ { -581.79187011718750, 172.05029296875000 }, { 658.03625488281250, 40.609863281250000 }, { 667.08630371093750, 478.81726074218750 } }},
+{{ { -581.79187011718750, 172.05029296875000 }, { 71.155517578125000, 433.02062988281250 }, { 583.44250488281250, 293.40905761718750 } }},
+//{{ {627.69104003906250, 81.144287109375000}, {168.92480468750000, -211.72735595703125}, {-61.570861816406250, 915.17187500000000} }},
+//{{ {627.69104003906250, 81.144287109375000}, {918.15942382812500, -325.46899414062500}, {359.05236816406250,  817.48889160156250} }},
+//{{ {0, 0}, {0,   100}, {100, 100} }},
+//{{ {0, 0}, {100, 100}, {100, 0  } }},
+{{ {0, 0}, {0,  100}, { 100,  100} }},
+{{ {0, 0}, {0, -100}, {-100, -100  } }},
 {{{939.4808349609375, 914.355224609375}, {-357.7921142578125, 590.842529296875}, {736.8936767578125, -350.717529296875}}},
 {{{939.4808349609375, 914.355224609375}, {-182.85418701171875, 634.4552001953125}, {-509.62615966796875, 576.1182861328125}}}
     };

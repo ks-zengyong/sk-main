@@ -273,7 +273,7 @@ SkOpPtT* SkOpSegment::addT(double t, const SkPoint& pt) {
             span->init(this, prev, t, pt);
             this->debugValidate();
 #if DEBUG_ADD_T
-            SkDebugf("%s insert t=%1.9g segID=%d spanID=%d\n", __FUNCTION__, t,
+            SkDebugf("%s insert t=%1.12g segID=%d spanID=%d\n", __FUNCTION__, t,
                     span->segment()->debugID(), span->debugID());
 #endif
             span->bumpSpanAdds();
