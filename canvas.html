@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.5">
+  <title>Angle Test</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="2000" height="2000"></canvas>
+
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function drawLabel(p)
+    {
+        ctx.font = '12px Arial';
+        ctx.fillText('(' + p[0] + ',' + p[1] + ')', p[0], p[1]);
+    }
+
+    function drawPoint(p)
+    {
+        var r = 3;
+        var len = r * 2;
+        ctx.fillRect(p[0] - r, p[1] - r, len, len);
+    }
+
+    function drawLine(s, e)
+    {
+        ctx.beginPath();
+        ctx.moveTo(s[0], s[1]);
+        ctx.lineTo(e[0], e[1]);
+        ctx.stroke();
+    }
+
+    function drawQuad(p0, p1, p2)
+    {
+        ctx.beginPath();
+        ctx.moveTo(p0[0], p0[1]);
+        ctx.quadraticCurveTo(p1[0], p1[1], p2[0], p2[1]);
+        ctx.stroke();
+    }
+
+    function drawQuadCtrl(p0, p1, p2)
+    {
+        drawLine(p0, p1);
+        drawLine(p0, p2);
+
+        drawPoint(p0);
+        drawPoint(p1);
+        drawPoint(p2);
+        drawLabel(p0);
+        drawLabel(p1);
+        drawLabel(p2);
+    }
+
+    function drawCubicCtrl(p0, p1, p2, p3)
+    {
+        drawLine(p0, p1);
+        drawLine(p0, p2);
+        drawLine(p0, p3);
+
+        drawPoint(p0);
+        drawPoint(p1);
+        drawPoint(p2);
+        drawPoint(p3);
+        // drawLabel(p0);
+        // drawLabel(p1);
+        // drawLabel(p2);
+        // drawLabel(p3);
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function hexStrToFloat(str) {
+        var float = 0, sign, order, mantissa, exp,
+        int = 0, multi = 1;
+        if (/^0x/.exec(str))
+        {
+            int = parseInt(str, 16);
+        }
+        else
+        {
+            for (var i = str.length -1; i >=0; i -= 1)
+            {
+                if (str.charCodeAt(i) > 255)
+                {
+                    console.log('Wrong string parameter');
+                    return false;
+                }
+                int += str.charCodeAt(i) * multi;
+                multi *= 256;
+            }
+        }
+
+        sign = (int >>> 31) ? -1 : 1;
+        exp = (int >>> 23 & 0xff) - 127;
+        mantissa = ((int & 0x7fffff) + 0x800000).toString(2);
+        for (i=0; i<mantissa.length; i+=1)
+        {
+            float += parseInt(mantissa[i]) ? Math.pow(2, exp) : 0;
+            exp--;
+        }
+
+        return float * sign;
+    }
+
+    function drawBuf8380()
+    {
+        function T(str)
+        {
+            var f = hexStrToFloat(str);
+            var scale = 20;
+            return f * scale;
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(T('0xa6800000'), T('0x43b0f22d'));
+        ctx.lineTo(T('0x42fc0000'), T('0x4116566d'));
+        ctx.bezierCurveTo(
+            T('0x42fb439d'), T('0x4114bbc7'),
+            T('0x42fa3ed7'), T('0x411565bd'),
+            T('0x42f934d2'), T('0x4116131e')
+        );
+        ctx.bezierCurveTo(
+            T('0x42f84915'), T('0x4116acc3'),
+            T('0x42f75939'), T('0x41174918'),
+            T('0x42f693f8'), T('0x4116566d')
+        );
+        ctx.lineTo(T('0x42ec3cee'), T('0x410127bb'));
+        ctx.lineTo(T('0x4102c0ec'), T('0x42d06d0e'));
+        ctx.lineTo(T('0xa6000000'), T('0x4381a63d'));
+        ctx.lineTo(T('0x00000000'), T('0x43b0f22d'));
+        ctx.lineTo(T('0xa6800000'), T('0x43b0f22d'));
+        ctx.fillStyle = 'red';
+        ctx.strokeStyle = 'red';
+        ctx.stroke();
+
+        drawCubicCtrl(
+            [T('0x42fc0000'), T('0x4116566d')],
+            [T('0x42fb439d'), T('0x4114bbc7')],
+            [T('0x42fa3ed7'), T('0x411565bd')],
+            [T('0x42f934d2'), T('0x4116131e')]
+        );
+        drawCubicCtrl(
+            [T('0x42f934d2'), T('0x4116131e')],
+            [T('0x42f84915'), T('0x4116acc3')],
+            [T('0x42f75939'), T('0x41174918')],
+            [T('0x42f693f8'), T('0x4116566d')]
+        );
+
+        ctx.translate(-1000, 40);
+        ctx.beginPath();
+        ctx.moveTo(T('0x4102c0ec'), T('0x42d06d0e'));
+        ctx.lineTo(T('0xc0ba5a1d'), T('0x43b8e831'));
+        ctx.lineTo(T('0x42fc0000'), T('0x411656d6'));
+        ctx.bezierCurveTo(
+            T('0x42fa9cac'), T('0x41134fdf'),
+            T('0x42f837cf'), T('0x41185aee'),
+            T('0x42f693f8'), T('0x411656d6')
+        );
+        ctx.lineTo(T('0x42ec3cee'), T('0x410127bb'));
+        ctx.lineTo(T('0x4102c0ec'), T('0x42d06d0e'));
+
+        ctx.fillStyle = 'blue';
+        ctx.strokeStyle = 'blue';
+        ctx.stroke();
+
+        drawCubicCtrl(
+            [T('0x42fc0000'), T('0x411656d6')],
+            [T('0x42fa9cac'), T('0x41134fdf')],
+            [T('0x42f837cf'), T('0x41185aee')],
+            [T('0x42f693f8'), T('0x411656d6')]
+        );
+    }
+
+    ctx.lineWidth = 1;
+    ctx.translate(-1000, 0);
+    drawBuf8380();
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function drawQuadPair(p0, p1, p2, p3, p4, p5)
+    {
+        ctx.fillStyle = 'red';
+        ctx.strokeStyle = 'red';
+        drawQuad(p0, p1, p2);
+        drawQuadCtrl(p0, p1, p2);
+
+        ctx.fillStyle = 'blue';
+        ctx.strokeStyle = 'blue';
+        drawQuad(p3, p4, p5);
+        drawQuadCtrl(p3, p4, p5);
+    }
+
+    ctx.lineWidth = 1;
+    ctx.translate(1000, 1000);
+    // drawQuadPair(
+    //     [627.69104003906250, 81.144287109375000],
+    //     [168.92480468750000, -211.72735595703125],
+    //     [-61.570861816406250, 915.17187500000000],
+    //     [627.69104003906250, 81.144287109375000],
+    //     [918.15942382812500, -325.46899414062500],
+    //     [359.05236816406250,  817.48889160156250]
+    // );
+    // drawQuadPair(
+    //     [-581.79187011718750, 172.05029296875000],
+    //     [658.03625488281250, 40.609863281250000],
+    //     [667.08630371093750, 478.81726074218750],
+    //     [-581.79187011718750, 172.05029296875000],
+    //     [71.155517578125000, 433.02062988281250],
+    //     [583.44250488281250, 293.40905761718750]
+    // );
+    // drawQuadPair(
+    //     [-232.13122558593750, -65.052978515625000],
+    //     [-888.74865722656250, 853.41906738281250],
+    //     [336.70422363281250, 628.50207519531250],
+    //     [-232.13122558593750, -65.052978515625000],
+    //     [285.94873046875000, -819.74456787109375],
+    //     [450.09179687500000, 841.08142089843750]
+    // );
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  </script>
+</body>
