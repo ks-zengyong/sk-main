@@ -710,7 +710,7 @@ void SkOpPtT::dumpAll() const {
 }
 
 void SkOpPtT::dumpBase() const {
-    SkDebugf(" t=%1.9g pt=(%1.9g,%1.9g)%s%s%s", this->fT, this->fPt.fX, this->fPt.fY,
+    SkDebugf(" t=%1.12g pt=(%1.12g,%1.12g)%s%s%s", this->fT, this->fPt.fX, this->fPt.fY,
             this->fCoincident ? " coin" : "",
             this->fDuplicatePt ? " dup" : "", this->fDeleted ? " deleted" : "");
 }
