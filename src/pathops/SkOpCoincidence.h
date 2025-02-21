@@ -152,7 +152,7 @@ public:
     void add(SkOpPtT* coinPtTStart, SkOpPtT* coinPtTEnd, SkOpPtT* oppPtTStart,
              SkOpPtT* oppPtTEnd);
     bool addEndMovedSpans(DEBUG_COIN_DECLARE_ONLY_PARAMS());
-    bool addExpanded(DEBUG_COIN_DECLARE_ONLY_PARAMS());
+    int addExpanded(DEBUG_COIN_DECLARE_ONLY_PARAMS());
     bool addMissing(bool* added  DEBUG_COIN_DECLARE_PARAMS());
     bool apply(DEBUG_COIN_DECLARE_ONLY_PARAMS());
     bool contains(const SkOpPtT* coinPtTStart, const SkOpPtT* coinPtTEnd,

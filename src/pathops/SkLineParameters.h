@@ -74,14 +74,6 @@ public:
         fC = pts[s].fX * pts[e].fY - pts[e].fX * pts[s].fY;
     }
 
-    double cubicPart(const SkDCubic& part) {
-        cubicEndPoints(part);
-        if (part[0] == part[1] || ((const SkDLine& ) part[0]).nearRay(part[2])) {
-            return pointDistance(part[3]);
-        }
-        return pointDistance(part[2]);
-    }
-
     void lineEndPoints(const SkDLine& pts) {
         fA = pts[0].fY - pts[1].fY;
         fB = pts[1].fX - pts[0].fX;

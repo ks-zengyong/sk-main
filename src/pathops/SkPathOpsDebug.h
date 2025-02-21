@@ -34,7 +34,7 @@ struct SkDQuad;
 #ifdef SK_RELEASE
 #define FORCE_RELEASE 1
 #else
-#define FORCE_RELEASE 1  // set force release to 1 for multiple thread -- no debugging
+#define FORCE_RELEASE 0  // set force release to 1 for multiple thread -- no debugging
 #endif
 
 #define DEBUG_UNDER_DEVELOPMENT 0
@@ -226,6 +226,9 @@ enum class SkOpPhase : char;
 // Tests with extreme numbers may fail, but all other tests should never fail.
 #define FAIL_IF(cond) \
         do { bool fail = (cond); SkOPASSERT(!fail); if (fail) return false; } while (false)
+
+#define FAIL_WITH_RETURN_IF(cond, ret) \
+    do { bool fail = (cond); SkOPASSERT(!fail); if (fail) return ret; } while (false)
 
 #define FAIL_WITH_NULL_IF(cond) \
         do { bool fail = (cond); SkOPASSERT(!fail); if (fail) return nullptr; } while (false)

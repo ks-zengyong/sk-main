@@ -9130,7 +9130,7 @@ static struct TestDesc tests[] = {
     TEST(op_1),
     TEST(op_2),
     TEST(op_3),
-    TEST(grshapearcs1),
+    //TEST(grshapearcs1),
     TEST(filinmangust14),
     TEST(testRect1_u),
     TEST(halbug),

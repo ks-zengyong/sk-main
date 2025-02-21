@@ -1,0 +1,72 @@
+SkOpSegment::debugShowActiveSpans segID=7 spanID=13 (-236.483764648,-326.230041504 -231.643280029,-326.230041504) t=0 tEnd=1 windSum=? windValue=1
+    fSpanAdds[1] ptT list[segID](spanID)<ptTID>:[7](13)<13> -> [10](20)<20>
+SkOpSegment::debugShowActiveSpans segID=7 spanID=14 (-231.643280029,-326.230041504)
+    fSpanAdds[1] ptT list[segID](spanID)<ptTID>:[7](14)<14> -> [8](15)<15>
+
+SkOpSegment::debugShowActiveSpans segID=8 spanID=15 (-231.643280029,-326.230041504 139.023681641,396.246276855) t=0 tEnd=1 windSum=? windValue=1
+    fSpanAdds[1] ptT list[segID](spanID)<ptTID>:[8](15)<15> -> [7](14)<14>
+SkOpSegment::debugShowActiveSpans segID=8 spanID=16 (139.023681641,396.246276855)
+    fSpanAdds[5] ptT list[segID](spanID)<ptTID>:[8](16)<16> -> [6](11)<11>* -> [5](10)<10>* -> [3](5)<5>* -> [2](4)<4>* -> [9](17)<17>
+
+SkOpSegment::debugShowActiveSpans segID=9 spanID=17 (139.023681641,396.246276855 -236.483764648,396.246276855) t=0 tEnd=1 windSum=? windValue=1
+    fSpanAdds[5] ptT list[segID](spanID)<ptTID>:[9](17)<17> -> [8](16)<16> -> [6](11)<11>* -> [5](10)<10>* -> [3](5)<5>* -> [2](4)<4>*
+SkOpSegment::debugShowActiveSpans segID=9 spanID=18 (-236.483764648,396.246276855)
+    fSpanAdds[1] ptT list[segID](spanID)<ptTID>:[9](18)<18> -> [10](19)<19>
+
+SkOpSegment::debugShowActiveSpans segID=10 spanID=19 (-236.483764648,396.246276855 -236.483764648,-326.230041504) t=0 tEnd=1 windSum=? windValue=1
+    fSpanAdds[1] ptT list[segID](spanID)<ptTID>:[10](19)<19> -> [9](18)<18>
+SkOpSegment::debugShowActiveSpans segID=10 spanID=20 (-236.483764648,-326.230041504)
+    fSpanAdds[1] ptT list[segID](spanID)<ptTID>:[10](20)<20> -> [7](13)<13>
+
+SkOpSegment::debugShowActiveSpans segID=1 spanID=1 (29,379.766174316 29,379.561981201) t=0 tEnd=1 windSum=? windValue=1
+    fSpanAdds[3] ptT list[segID](spanID)<ptTID>:[1](1)<1>* -> [6](12)<12>* -> [4](7)<7>* -> [3](6)<6>*
+SkOpSegment::debugShowActiveSpans segID=1 spanID=2 (29,379.561981201)
+    fSpanAdds[3] ptT list[segID](spanID)<ptTID>:[1](2)<2>* -> [5](9)<9>* -> [4](8)<8>* -> [2](3)<3>*
+
+SkOpSegment::debugShowActiveSpans segID=2 spanID=3 (29,379.561981201 82.496487354,396.163894837 138.480361938,396.245880127 0.988938033581) t=0 tEnd=0.9951171875 windSum=? windValue=1
+    fSpanAdds[3] ptT list[segID](spanID)<ptTID>:[2](3)<3>* -> [1](2)<2>* -> [5](9)<9>* -> [4](8)<8>*
+SkOpSegment::debugShowActiveSpans segID=2 spanID=21 (138.480361938,396.245880127 138.752019955,396.246276855 139.023681641,396.246276855 0.999999761581) t=0.9951171875 tEnd=1 windSum=? windValue=1
+    fSpanAdds[2] ptT list[segID](spanID)<ptTID>:[2](21)<21>* -> [6](23)<23>* -> [3](22)<22>* -> [5](24)<24>*
+SkOpSegment::debugShowActiveSpans segID=2 spanID=4 (139.023681641,396.246276855)
+    fSpanAdds[5] ptT list[segID](spanID)<ptTID>:[2](4)<4>* -> [9](17)<17> -> [8](16)<16> -> [6](11)<11>* -> [5](10)<10>* -> [3](5)<5>*
+
+SkOpSegment::debugShowActiveSpans segID=3 spanID=5 (139.023681641,396.246276855 138.752019953,396.246276855 138.480361938,396.245880127 0.999999761581) t=0 tEnd=0.00488349471703 windSum=? windValue=1
+    fSpanAdds[5] ptT list[segID](spanID)<ptTID>:[3](5)<5>* -> [2](4)<4>* -> [9](17)<17> -> [8](16)<16> -> [6](11)<11>* -> [5](10)<10>*
+SkOpSegment::debugShowActiveSpans segID=3 spanID=22 (138.480361938,396.245880127 82.5120500153,396.164902967 29,379.766174316 0.989074170589) t=0.00488349471703 tEnd=1 windSum=? windValue=1
+    fSpanAdds[2] ptT list[segID](spanID)<ptTID>:[3](22)<22>* -> [5](24)<24>* -> [2](21)<21>* -> [6](23)<23>*
+SkOpSegment::debugShowActiveSpans segID=3 spanID=6 (29,379.766174316)
+    fSpanAdds[3] ptT list[segID](spanID)<ptTID>:[3](6)<6>* -> [1](1)<1>* -> [6](12)<12>* -> [4](7)<7>*
+
+SkOpSegment::debugShowActiveSpans segID=4 spanID=7 (29,379.766174316 29,379.561981201) t=0 tEnd=1 windSum=? windValue=1
+    fSpanAdds[3] ptT list[segID](spanID)<ptTID>:[4](7)<7>* -> [3](6)<6>* -> [1](1)<1>* -> [6](12)<12>*
+SkOpSegment::debugShowActiveSpans segID=4 spanID=8 (29,379.561981201)
+    fSpanAdds[3] ptT list[segID](spanID)<ptTID>:[4](8)<8>* -> [2](3)<3>* -> [1](2)<2>* -> [5](9)<9>*
+
+SkOpSegment::debugShowActiveSpans segID=5 spanID=9 (29,379.561981201 82.4965244363,396.163906345 138.480438232,396.245880127 0.988937973976) t=0 tEnd=0.995117869621 windSum=? windValue=1
+    fSpanAdds[3] ptT list[segID](spanID)<ptTID>:[5](9)<9>* -> [4](8)<8>* -> [2](3)<3>* -> [1](2)<2>*
+SkOpSegment::debugShowActiveSpans segID=5 spanID=24 (138.480438232,396.245880127 138.752057908,396.246276855 139.023681641,396.246276855 0.999999761581) t=0.995117869621 tEnd=1 windSum=? windValue=1
+    fSpanAdds[2] ptT list[segID](spanID)<ptTID>:[5](24)<24>* -> [2](21)<21>* -> [6](23)<23>* -> [3](22)<22>*
+SkOpSegment::debugShowActiveSpans segID=5 spanID=10 (139.023681641,396.246276855)
+    fSpanAdds[5] ptT list[segID](spanID)<ptTID>:[5](10)<10>* -> [3](5)<5>* -> [2](4)<4>* -> [9](17)<17> -> [8](16)<16> -> [6](11)<11>*
+
+SkOpSegment::debugShowActiveSpans segID=6 spanID=11 (139.023681641,396.246276855 138.752019953,396.246276855 138.480361938,396.245880127 0.999999761581) t=0 tEnd=0.00488349471703 windSum=? windValue=1
+    fSpanAdds[5] ptT list[segID](spanID)<ptTID>:[6](11)<11>* -> [5](10)<10>* -> [3](5)<5>* -> [2](4)<4>* -> [9](17)<17> -> [8](16)<16>
+SkOpSegment::debugShowActiveSpans segID=6 spanID=23 (138.480361938,396.245880127 82.5120500153,396.164902967 29,379.766174316 0.989074170589) t=0.00488349471703 tEnd=1 windSum=? windValue=1
+    fSpanAdds[2] ptT list[segID](spanID)<ptTID>:[6](23)<23>* -> [3](22)<22>* -> [5](24)<24>* -> [2](21)<21>*
+SkOpSegment::debugShowActiveSpans segID=6 spanID=12 (29,379.766174316)
+    fSpanAdds[3] ptT list[segID](spanID)<ptTID>:[6](12)<12>* -> [4](7)<7>* -> [3](6)<6>* -> [1](1)<1>*
+
+- seg=5 span=24 ptT=24  t=0.995117869621 pt=(138.480438232,396.245880127) coin span=10 ptT=10  t=1 pt=(139.023681641,396.246276855) coin operand
++ seg=6 span=23 ptT=23  t=0.00488349471703 pt=(138.480361938,396.245880127) coin span=11 ptT=11  t=0 pt=(139.023681641,396.246276855) coin operand
+- seg=3 span=5 ptT=5  t=0 pt=(139.023681641,396.246276855) coin span=6 ptT=6  t=1 pt=(29,379.766174316) coin xor
++ seg=6 span=11 ptT=11  t=0 pt=(139.023681641,396.246276855) coin span=12 ptT=12  t=1 pt=(29,379.766174316) coin operand
+- seg=5 span=24 ptT=24  t=0.995117869621 pt=(138.480438232,396.245880127) coin span=10 ptT=10  t=1 pt=(139.023681641,396.246276855) coin operand
++ seg=3 span=22 ptT=22  t=0.00488349471703 pt=(138.480361938,396.245880127) coin span=5 ptT=5  t=0 pt=(139.023681641,396.246276855) coin xor
+- seg=2 span=21 ptT=21  t=0.9951171875 pt=(138.480361938,396.245880127) coin span=4 ptT=4  t=1 pt=(139.023681641,396.246276855) coin xor
++ seg=6 span=23 ptT=23  t=0.00488349471703 pt=(138.480361938,396.245880127) coin span=11 ptT=11  t=0 pt=(139.023681641,396.246276855) coin operand
+- seg=2 span=3 ptT=3  t=0 pt=(29,379.561981201) coin span=4 ptT=4  t=1 pt=(139.023681641,396.246276855) coin xor
++ seg=5 span=9 ptT=9  t=0 pt=(29,379.561981201) coin span=10 ptT=10  t=1 pt=(139.023681641,396.246276855) coin operand
+- seg=4 span=7 ptT=7  t=0 pt=(29,379.766174316) coin span=8 ptT=8  t=1 pt=(29,379.561981201) coin operand
++ seg=1 span=1 ptT=1  t=0 pt=(29,379.766174316) coin span=2 ptT=2  t=1 pt=(29,379.561981201) coin xor
+- seg=2 span=21 ptT=21  t=0.9951171875 pt=(138.480361938,396.245880127) coin span=4 ptT=4  t=1 pt=(139.023681641,396.246276855) coin xor
++ seg=3 span=22 ptT=22  t=0.00488349471703 pt=(138.480361938,396.245880127) coin span=5 ptT=5  t=0 pt=(139.023681641,396.246276855) coin xor
