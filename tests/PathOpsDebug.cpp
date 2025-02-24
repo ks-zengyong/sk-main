@@ -35,12 +35,12 @@
 #include <cmath>
 #include <cstdint>
 
-bool PathOpsDebug::gJson;
+bool PathOpsDebug::gJson = true;
 bool PathOpsDebug::gMarkJsonFlaky;
-bool PathOpsDebug::gOutFirst;
+bool PathOpsDebug::gOutFirst = true;
 bool PathOpsDebug::gCheckForDuplicateNames;
-bool PathOpsDebug::gOutputSVG;
-FILE* PathOpsDebug::gOut;
+bool PathOpsDebug::gOutputSVG = true;
+FILE* PathOpsDebug::gOut = fopen("../pathout.json", "w");
 
 inline void DebugDumpDouble(double x) {
     if (x == floor(x)) {

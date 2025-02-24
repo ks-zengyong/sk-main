@@ -349,9 +349,9 @@
         // drawPoint([T(2551), T(64)]);
     }
 
-    // ctx.lineWidth = 1;
-    // ctx.translate(100, 1200);
-    // draw_crbug_526025();
+    ctx.lineWidth = 1;
+    ctx.translate(100, 1200);
+    draw_crbug_526025();
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -435,14 +435,14 @@
         ctx.lineTo(T(1), T(2));
         ctx.stroke();
 
-        drawPoint([T(0), T(1)]);
-        drawPoint([T(4), T(6)]);
-        drawPoint([T(2), T(1)]);
-        drawPoint([T(2), T(0)]);
+        drawPoint([T(1), T(2)]);
+        drawPoint([T(0), T(2)]);
+        drawPoint([T(1), T(0)]);
+        drawPoint([T(6), T(4)]);
     }
-    ctx.lineWidth = 1;
-    ctx.translate(300, 1200);
-    draw_cubicOp108();
+    // ctx.lineWidth = 1;
+    // ctx.translate(300, 1200);
+    // draw_cubicOp108();
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     function drawQuadPair(p0, p1, p2, p3, p4, p5)
     {

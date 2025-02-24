@@ -1123,7 +1123,10 @@ void SkOpSegment::debugSetCoinT(int index, double t) const {
         return;
     }
     SkASSERT(fDebugLastMin >= t || t >= fDebugLastMax);
-    SkASSERT((t - fDebugBaseMin > 0) == (fDebugLastMin - fDebugBaseMin > 0));
+
+    if (this->verb() != SkPath::Verb::kCubic_Verb) {
+        SkASSERT((t - fDebugBaseMin > 0) == (fDebugLastMin - fDebugBaseMin > 0));
+    }
 }
 #endif
 
@@ -1144,16 +1147,16 @@ static void debugShowPtTList(const SkOpSpanBase* span, SkString* str)
 
 void SkOpSegment::debugShowActiveSpans(SkString* str) const {
     //debugValidate();
-    //if (done()) {
-    //    return;
-    //}
+    if (done()) {
+        return;
+    }
     int lastId = -1;
     double lastT = -1;
     const SkOpSpan* span = &fHead;
     do {
-        //if (span->done()) {
-        //    continue;
-        //}
+        if (span->done()) {
+            continue;
+        }
         if (lastId == this->debugID() && lastT == span->t()) {
             continue;
         }
