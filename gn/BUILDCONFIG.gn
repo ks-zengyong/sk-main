@@ -22,7 +22,8 @@ declare_args() {
   cc = "cc"
   cxx = "c++"
 
-  win_sdk = "C:/Program Files (x86)/Windows Kits/10"
+  # win_sdk = "C:/Program Files (x86)/Windows Kits/10"
+  win_sdk = "F:/Windows Kits/10"
   win_sdk_version = ""
 
   win_vc = ""
