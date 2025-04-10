@@ -96,7 +96,8 @@ static bool findChaseOp(SkTDArray<SkOpSpanBase*>& chase, SkOpSpanBase** startPtr
                     *startPtr = start;
                     *endPtr = end;
                 }
-                // OPTIMIZATION: should this also add to the chase?
+                // OPTIMIZATION: should this also add to the chase? No
+                // markAngle return false: 1.reach safetyNet limit 2.span is done 3.windSum confict
                 if (sortable) {
                     if (!segment->markAngle(maxWinding, sumWinding, oppMaxWinding,
                             oppSumWinding, angle, nullptr)) {

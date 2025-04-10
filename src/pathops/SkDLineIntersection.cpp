@@ -21,7 +21,7 @@ void SkIntersections::cleanUpParallelLines(bool parallel) {
     if (fUsed == 2 && !parallel) {
         bool startMatch = fT[0][0] == 0 || zero_or_one(fT[1][0]);
         bool endMatch = fT[0][1] == 1 || zero_or_one(fT[1][1]);
-        if ((!startMatch && !endMatch) || approximately_equal(fT[0][0], fT[0][1])) {
+        if ((!startMatch && !endMatch) || (approximately_equal(fT[0][0], fT[0][1]) && approximately_equal(fT[1][0], fT[1][1]))) {
             SkASSERT(startMatch || endMatch);
             if (startMatch && endMatch && (fT[0][0] != 0 || !zero_or_one(fT[1][0]))
                     && fT[0][1] == 1 && zero_or_one(fT[1][1])) {

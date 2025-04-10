@@ -41,7 +41,7 @@ static void debugShowLineIntersection(int pts, const SkIntersectionHelper& wt,
     if (pts == 2) {
         SkDebugf(" " T_DEBUG_STR(wtTs, 1) " " PT_DEBUG_STR, i[0][1], PT_DEBUG_DATA(i, 1));
     }
-    SkDebugf(" wnTs[0]=%g " LINE_DEBUG_STR, i[1][0], LINE_DEBUG_DATA(wn.pts()));
+    SkDebugf(" wnTs[0]=%1.9g " LINE_DEBUG_STR, i[1][0], LINE_DEBUG_DATA(wn.pts()));
     if (pts == 2) {
         SkDebugf(" " T_DEBUG_STR(wnTs, 1), i[1][1]);
     }
@@ -62,7 +62,7 @@ static void debugShowQuadLineIntersection(int pts, const SkIntersectionHelper& w
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wtTs) " " PT_DEBUG_STR, n, i[0][n], PT_DEBUG_DATA(i, n));
     }
-    SkDebugf(" wnTs[0]=%g " LINE_DEBUG_STR, i[1][0], LINE_DEBUG_DATA(wn.pts()));
+    SkDebugf(" wnTs[0]=%1.9g " LINE_DEBUG_STR, i[1][0], LINE_DEBUG_DATA(wn.pts()));
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wnTs), n, i[1][n]);
     }
@@ -82,7 +82,7 @@ static void debugShowQuadIntersection(int pts, const SkIntersectionHelper& wt,
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wtTs) " " PT_DEBUG_STR, n, i[0][n], PT_DEBUG_DATA(i, n));
     }
-    SkDebugf(" wnTs[0]=%g " QUAD_DEBUG_STR, i[1][0], QUAD_DEBUG_DATA(wn.pts()));
+    SkDebugf(" wnTs[0]=%1.9g " QUAD_DEBUG_STR, i[1][0], QUAD_DEBUG_DATA(wn.pts()));
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wnTs), n, i[1][n]);
     }
@@ -102,7 +102,7 @@ static void debugShowConicLineIntersection(int pts, const SkIntersectionHelper& 
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wtTs) " " PT_DEBUG_STR, n, i[0][n], PT_DEBUG_DATA(i, n));
     }
-    SkDebugf(" wnTs[0]=%g " LINE_DEBUG_STR, i[1][0], LINE_DEBUG_DATA(wn.pts()));
+    SkDebugf(" wnTs[0]=%1.9g " LINE_DEBUG_STR, i[1][0], LINE_DEBUG_DATA(wn.pts()));
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wnTs), n, i[1][n]);
     }
@@ -122,7 +122,7 @@ static void debugShowConicQuadIntersection(int pts, const SkIntersectionHelper& 
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wtTs) " " PT_DEBUG_STR, n, i[0][n], PT_DEBUG_DATA(i, n));
     }
-    SkDebugf(" wnTs[0]=%g " QUAD_DEBUG_STR, i[1][0], QUAD_DEBUG_DATA(wn.pts()));
+    SkDebugf(" wnTs[0]=%1.9g " QUAD_DEBUG_STR, i[1][0], QUAD_DEBUG_DATA(wn.pts()));
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wnTs), n, i[1][n]);
     }
@@ -143,7 +143,7 @@ static void debugShowConicIntersection(int pts, const SkIntersectionHelper& wt,
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wtTs) " " PT_DEBUG_STR, n, i[0][n], PT_DEBUG_DATA(i, n));
     }
-    SkDebugf(" wnTs[0]=%g " CONIC_DEBUG_STR, i[1][0], CONIC_DEBUG_DATA(wn.pts(), wn.weight()));
+    SkDebugf(" wnTs[0]=%1.9g " CONIC_DEBUG_STR, i[1][0], CONIC_DEBUG_DATA(wn.pts(), wn.weight()));
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wnTs), n, i[1][n]);
     }
@@ -163,7 +163,7 @@ static void debugShowCubicLineIntersection(int pts, const SkIntersectionHelper& 
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wtTs) " " PT_DEBUG_STR, n, i[0][n], PT_DEBUG_DATA(i, n));
     }
-    SkDebugf(" wnTs[0]=%g " LINE_DEBUG_STR, i[1][0], LINE_DEBUG_DATA(wn.pts()));
+    SkDebugf(" wnTs[0]=%1.9g " LINE_DEBUG_STR, i[1][0], LINE_DEBUG_DATA(wn.pts()));
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wnTs), n, i[1][n]);
     }
@@ -183,7 +183,7 @@ static void debugShowCubicQuadIntersection(int pts, const SkIntersectionHelper& 
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wtTs) " " PT_DEBUG_STR, n, i[0][n], PT_DEBUG_DATA(i, n));
     }
-    SkDebugf(" wnTs[0]=%g " QUAD_DEBUG_STR, i[1][0], QUAD_DEBUG_DATA(wn.pts()));
+    SkDebugf(" wnTs[0]=%1.9g " QUAD_DEBUG_STR, i[1][0], QUAD_DEBUG_DATA(wn.pts()));
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wnTs), n, i[1][n]);
     }
@@ -203,7 +203,7 @@ static void debugShowCubicConicIntersection(int pts, const SkIntersectionHelper&
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wtTs) " " PT_DEBUG_STR, n, i[0][n], PT_DEBUG_DATA(i, n));
     }
-    SkDebugf(" wnTs[0]=%g " CONIC_DEBUG_STR, i[1][0], CONIC_DEBUG_DATA(wn.pts(), wn.weight()));
+    SkDebugf(" wnTs[0]=%1.9g " CONIC_DEBUG_STR, i[1][0], CONIC_DEBUG_DATA(wn.pts(), wn.weight()));
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wnTs), n, i[1][n]);
     }
@@ -223,7 +223,7 @@ static void debugShowCubicIntersection(int pts, const SkIntersectionHelper& wt,
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wtTs) " " PT_DEBUG_STR, n, i[0][n], PT_DEBUG_DATA(i, n));
     }
-    SkDebugf(" wnTs[0]=%g " CUBIC_DEBUG_STR, i[1][0], CUBIC_DEBUG_DATA(wn.pts()));
+    SkDebugf(" wnTs[0]=%1.9g " CUBIC_DEBUG_STR, i[1][0], CUBIC_DEBUG_DATA(wn.pts()));
     for (int n = 1; n < pts; ++n) {
         SkDebugf(" " TX_DEBUG_STR(wnTs), n, i[1][n]);
     }
@@ -293,6 +293,9 @@ bool AddIntersectTs(SkOpContour* test, SkOpContour* next, SkOpCoincidence* coinc
             continue;
         }
         do {
+#if DEBUG_ADD_INTERSECTING_TS
+            SkDebugf("AddIntersectTs [%d] -> [%d]:\n", wt.segment()->debugID(), wn.segment()->debugID());
+#endif
             if (!SkPathOpsBounds::Intersects(wt.bounds(), wn.bounds())) {
                 continue;
             }

@@ -1,0 +1,475 @@
+path.moveTo(                   0,                    0);
+path.lineTo(                   9,                   19);
+path.lineTo(18.962963104248046875, 25.234567642211914062);
+path.lineTo(27.518518447875976562, 30.160493850708007812);
+path.lineTo(34.666667938232421875, 33.77777862548828125);
+path.lineTo(40.407405853271484375, 36.08641815185546875);
+path.lineTo( 44.7407379150390625, 37.08641815185546875);
+path.lineTo(47.666667938232421875, 36.77777862548828125);
+path.lineTo(49.185184478759765625,   35.160491943359375);
+path.lineTo(  49.296295166015625, 32.234569549560546875);
+path.lineTo(                  48,                   28);
+path.lineTo(        47.810546875,          38.05859375);
+path.lineTo(           47.046875,             43.59375);
+path.lineTo(     46.358154296875,       45.06787109375);
+path.lineTo(        45.416015625,          45.89453125);
+path.lineTo(     44.183837890625,       46.23486328125);
+path.lineTo(              42.625,                46.25);
+path.lineTo(        38.380859375,          45.94921875);
+path.lineTo(           32.390625,             46.28125);
+path.lineTo(     28.649169921875,       47.08740234375);
+path.lineTo(        24.361328125,          48.53515625);
+path.lineTo(     19.490478515625,       50.78564453125);
+path.lineTo(                  14,                   54);
+path.lineTo(12.166666984558105469, 53.583332061767578125);
+path.lineTo(                  12,                   53);
+path.lineTo(                13.5,                52.25);
+path.lineTo(16.666666030883789062, 51.333332061767578125);
+path.lineTo(21.500001907348632812,                50.25);
+path.lineTo(                  28,                   49);
+path.moveTo(                  50,                   54);
+path.lineTo(        52.361328125,         48.138671875);
+path.lineTo(           53.328125,            44.421875);
+path.lineTo(     53.233642578125,      43.188232421875);
+path.lineTo(        52.724609375,         42.275390625);
+path.lineTo(     51.779052734375,      41.611572265625);
+path.lineTo(              50.375,               41.125);
+path.lineTo(           39.734375,            39.515625);
+path.lineTo(        31.091796875,         37.908203125);
+path.lineTo(                  20,                   35);
+insert edge (0 -> 28) below vertex 0
+insert edge (0 -> 28) above vertex 28
+insert edge (0 -> 1) below vertex 0
+insert edge (0 -> 1) above vertex 1
+insert edge (1 -> 2) below vertex 1
+insert edge (1 -> 2) above vertex 2
+insert edge (2 -> 3) below vertex 2
+insert edge (2 -> 3) above vertex 3
+insert edge (3 -> 4) below vertex 3
+insert edge (3 -> 4) above vertex 4
+insert edge (4 -> 5) below vertex 4
+insert edge (4 -> 5) above vertex 5
+insert edge (5 -> 6) below vertex 5
+insert edge (5 -> 6) above vertex 6
+insert edge (7 -> 6) below vertex 7
+insert edge (7 -> 6) above vertex 6
+insert edge (8 -> 7) below vertex 8
+insert edge (8 -> 7) above vertex 7
+insert edge (9 -> 8) below vertex 9
+insert edge (9 -> 8) above vertex 8
+insert edge (10 -> 9) below vertex 10
+insert edge (10 -> 9) above vertex 9
+insert edge (10 -> 11) below vertex 10
+insert edge (10 -> 11) above vertex 11
+insert edge (11 -> 12) below vertex 11
+insert edge (11 -> 12) above vertex 12
+insert edge (12 -> 13) below vertex 12
+insert edge (12 -> 13) above vertex 13
+insert edge (13 -> 14) below vertex 13
+insert edge (13 -> 14) above vertex 14
+insert edge (14 -> 15) below vertex 14
+insert edge (14 -> 15) above vertex 15
+insert edge (15 -> 16) below vertex 15
+insert edge (15 -> 16) above vertex 16
+insert edge (17 -> 16) below vertex 17
+insert edge (17 -> 16) above vertex 16
+insert edge (17 -> 18) below vertex 17
+insert edge (17 -> 18) above vertex 18
+insert edge (18 -> 19) below vertex 18
+insert edge (18 -> 19) above vertex 19
+insert edge (19 -> 20) below vertex 19
+insert edge (19 -> 20) above vertex 20
+insert edge (20 -> 21) below vertex 20
+insert edge (20 -> 21) above vertex 21
+insert edge (21 -> 22) below vertex 21
+insert edge (21 -> 22) above vertex 22
+insert edge (23 -> 22) below vertex 23
+insert edge (23 -> 22) above vertex 22
+insert edge (24 -> 23) below vertex 24
+insert edge (24 -> 23) above vertex 23
+insert edge (25 -> 24) below vertex 25
+insert edge (25 -> 24) above vertex 24
+insert edge (26 -> 25) below vertex 26
+insert edge (26 -> 25) above vertex 25
+insert edge (27 -> 26) below vertex 27
+insert edge (27 -> 26) above vertex 26
+insert edge (28 -> 27) below vertex 28
+insert edge (28 -> 27) above vertex 27
+insert edge (38 -> 29) below vertex 38
+insert edge (38 -> 29) above vertex 29
+insert edge (30 -> 29) below vertex 30
+insert edge (30 -> 29) above vertex 29
+insert edge (31 -> 30) below vertex 31
+insert edge (31 -> 30) above vertex 30
+insert edge (32 -> 31) below vertex 32
+insert edge (32 -> 31) above vertex 31
+insert edge (33 -> 32) below vertex 33
+insert edge (33 -> 32) above vertex 32
+insert edge (34 -> 33) below vertex 34
+insert edge (34 -> 33) above vertex 33
+insert edge (35 -> 34) below vertex 35
+insert edge (35 -> 34) above vertex 34
+insert edge (36 -> 35) below vertex 36
+insert edge (36 -> 35) above vertex 35
+insert edge (37 -> 36) below vertex 37
+insert edge (37 -> 36) above vertex 36
+insert edge (38 -> 37) below vertex 38
+insert edge (38 -> 37) above vertex 37
+
+initial mesh:
+vertex 0 (0, 0) alpha 255, null partner
+  edge 0 -> 1, winding 1
+  edge 0 -> 28, winding -1
+vertex 1 (9, 19) alpha 255, null partner
+  edge 0 -> 1, winding 1
+  edge 1 -> 2, winding 1
+vertex 2 (18.963, 25.2346) alpha 255, null partner
+  edge 1 -> 2, winding 1
+  edge 2 -> 3, winding 1
+vertex 3 (27.5185, 30.1605) alpha 255, null partner
+  edge 2 -> 3, winding 1
+  edge 3 -> 4, winding 1
+vertex 4 (34.6667, 33.7778) alpha 255, null partner
+  edge 3 -> 4, winding 1
+  edge 4 -> 5, winding 1
+vertex 5 (40.4074, 36.0864) alpha 255, null partner
+  edge 4 -> 5, winding 1
+  edge 5 -> 6, winding 1
+vertex 6 (44.7407, 37.0864) alpha 255, null partner
+  edge 5 -> 6, winding 1
+  edge 7 -> 6, winding -1
+vertex 7 (47.6667, 36.7778) alpha 255, null partner
+  edge 8 -> 7, winding -1
+  edge 7 -> 6, winding -1
+vertex 8 (49.1852, 35.1605) alpha 255, null partner
+  edge 9 -> 8, winding -1
+  edge 8 -> 7, winding -1
+vertex 9 (49.2963, 32.2346) alpha 255, null partner
+  edge 10 -> 9, winding -1
+  edge 9 -> 8, winding -1
+vertex 10 (48, 28) alpha 255, null partner
+  edge 10 -> 11, winding 1
+  edge 10 -> 9, winding -1
+vertex 11 (47.8105, 38.0586) alpha 255, null partner
+  edge 10 -> 11, winding 1
+  edge 11 -> 12, winding 1
+vertex 12 (47.0469, 43.5938) alpha 255, null partner
+  edge 11 -> 12, winding 1
+  edge 12 -> 13, winding 1
+vertex 13 (46.3582, 45.0679) alpha 255, null partner
+  edge 12 -> 13, winding 1
+  edge 13 -> 14, winding 1
+vertex 14 (45.416, 45.8945) alpha 255, null partner
+  edge 13 -> 14, winding 1
+  edge 14 -> 15, winding 1
+vertex 15 (44.1838, 46.2349) alpha 255, null partner
+  edge 14 -> 15, winding 1
+  edge 15 -> 16, winding 1
+vertex 16 (42.625, 46.25) alpha 255, null partner
+  edge 17 -> 16, winding -1
+  edge 15 -> 16, winding 1
+vertex 17 (38.3809, 45.9492) alpha 255, null partner
+  edge 17 -> 18, winding 1
+  edge 17 -> 16, winding -1
+vertex 18 (32.3906, 46.2812) alpha 255, null partner
+  edge 17 -> 18, winding 1
+  edge 18 -> 19, winding 1
+vertex 19 (28.6492, 47.0874) alpha 255, null partner
+  edge 18 -> 19, winding 1
+  edge 19 -> 20, winding 1
+vertex 20 (24.3613, 48.5352) alpha 255, null partner
+  edge 19 -> 20, winding 1
+  edge 20 -> 21, winding 1
+vertex 21 (19.4905, 50.7856) alpha 255, null partner
+  edge 20 -> 21, winding 1
+  edge 21 -> 22, winding 1
+vertex 22 (14, 54) alpha 255, null partner
+  edge 23 -> 22, winding -1
+  edge 21 -> 22, winding 1
+vertex 23 (12.1667, 53.5833) alpha 255, null partner
+  edge 24 -> 23, winding -1
+  edge 23 -> 22, winding -1
+vertex 24 (12, 53) alpha 255, null partner
+  edge 25 -> 24, winding -1
+  edge 24 -> 23, winding -1
+vertex 25 (13.5, 52.25) alpha 255, null partner
+  edge 26 -> 25, winding -1
+  edge 25 -> 24, winding -1
+vertex 26 (16.6667, 51.3333) alpha 255, null partner
+  edge 27 -> 26, winding -1
+  edge 26 -> 25, winding -1
+vertex 27 (21.5, 50.25) alpha 255, null partner
+  edge 28 -> 27, winding -1
+  edge 27 -> 26, winding -1
+vertex 28 (28, 49) alpha 255, null partner
+  edge 0 -> 28, winding -1
+  edge 28 -> 27, winding -1
+vertex 29 (50, 54) alpha 255, null partner
+  edge 38 -> 29, winding 1
+  edge 30 -> 29, winding -1
+vertex 30 (52.3613, 48.1387) alpha 255, null partner
+  edge 31 -> 30, winding -1
+  edge 30 -> 29, winding -1
+vertex 31 (53.3281, 44.4219) alpha 255, null partner
+  edge 32 -> 31, winding -1
+  edge 31 -> 30, winding -1
+vertex 32 (53.2336, 43.1882) alpha 255, null partner
+  edge 33 -> 32, winding -1
+  edge 32 -> 31, winding -1
+vertex 33 (52.7246, 42.2754) alpha 255, null partner
+  edge 34 -> 33, winding -1
+  edge 33 -> 32, winding -1
+vertex 34 (51.7791, 41.6116) alpha 255, null partner
+  edge 35 -> 34, winding -1
+  edge 34 -> 33, winding -1
+vertex 35 (50.375, 41.125) alpha 255, null partner
+  edge 36 -> 35, winding -1
+  edge 35 -> 34, winding -1
+vertex 36 (39.7344, 39.5156) alpha 255, null partner
+  edge 37 -> 36, winding -1
+  edge 36 -> 35, winding -1
+vertex 37 (31.0918, 37.9082) alpha 255, null partner
+  edge 38 -> 37, winding -1
+  edge 37 -> 36, winding -1
+vertex 38 (20, 35) alpha 255, null partner
+  edge 38 -> 29, winding 1
+  edge 38 -> 37, winding -1
+
+sorted mesh:
+vertex 0 (0, 0) alpha 255, null partner
+  edge 0 -> 1, winding 1
+  edge 0 -> 30, winding -1
+vertex 1 (9, 19) alpha 255, null partner
+  edge 0 -> 1, winding 1
+  edge 1 -> 2, winding 1
+vertex 2 (18.963, 25.2346) alpha 255, null partner
+  edge 1 -> 2, winding 1
+  edge 2 -> 4, winding 1
+vertex 3 (48, 28) alpha 255, null partner
+  edge 3 -> 13, winding 1
+  edge 3 -> 5, winding -1
+vertex 4 (27.5185, 30.1605) alpha 255, null partner
+  edge 2 -> 4, winding 1
+  edge 4 -> 6, winding 1
+vertex 5 (49.2963, 32.2346) alpha 255, null partner
+  edge 3 -> 5, winding -1
+  edge 5 -> 8, winding -1
+vertex 6 (34.6667, 33.7778) alpha 255, null partner
+  edge 4 -> 6, winding 1
+  edge 6 -> 9, winding 1
+vertex 7 (20, 35) alpha 255, null partner
+  edge 7 -> 38, winding 1
+  edge 7 -> 12, winding -1
+vertex 8 (49.1852, 35.1605) alpha 255, null partner
+  edge 5 -> 8, winding -1
+  edge 8 -> 10, winding -1
+vertex 9 (40.4074, 36.0864) alpha 255, null partner
+  edge 6 -> 9, winding 1
+  edge 9 -> 11, winding 1
+vertex 10 (47.6667, 36.7778) alpha 255, null partner
+  edge 8 -> 10, winding -1
+  edge 10 -> 11, winding -1
+vertex 11 (44.7407, 37.0864) alpha 255, null partner
+  edge 9 -> 11, winding 1
+  edge 10 -> 11, winding -1
+vertex 12 (31.0918, 37.9082) alpha 255, null partner
+  edge 7 -> 12, winding -1
+  edge 12 -> 14, winding -1
+vertex 13 (47.8105, 38.0586) alpha 255, null partner
+  edge 3 -> 13, winding 1
+  edge 13 -> 19, winding 1
+vertex 14 (39.7344, 39.5156) alpha 255, null partner
+  edge 12 -> 14, winding -1
+  edge 14 -> 15, winding -1
+vertex 15 (50.375, 41.125) alpha 255, null partner
+  edge 14 -> 15, winding -1
+  edge 15 -> 16, winding -1
+vertex 16 (51.7791, 41.6116) alpha 255, null partner
+  edge 15 -> 16, winding -1
+  edge 16 -> 17, winding -1
+vertex 17 (52.7246, 42.2754) alpha 255, null partner
+  edge 16 -> 17, winding -1
+  edge 17 -> 18, winding -1
+vertex 18 (53.2336, 43.1882) alpha 255, null partner
+  edge 17 -> 18, winding -1
+  edge 18 -> 20, winding -1
+vertex 19 (47.0469, 43.5938) alpha 255, null partner
+  edge 13 -> 19, winding 1
+  edge 19 -> 21, winding 1
+vertex 20 (53.3281, 44.4219) alpha 255, null partner
+  edge 18 -> 20, winding -1
+  edge 20 -> 28, winding -1
+vertex 21 (46.3582, 45.0679) alpha 255, null partner
+  edge 19 -> 21, winding 1
+  edge 21 -> 22, winding 1
+vertex 22 (45.416, 45.8945) alpha 255, null partner
+  edge 21 -> 22, winding 1
+  edge 22 -> 24, winding 1
+vertex 23 (38.3809, 45.9492) alpha 255, null partner
+  edge 23 -> 26, winding 1
+  edge 23 -> 25, winding -1
+vertex 24 (44.1838, 46.2349) alpha 255, null partner
+  edge 22 -> 24, winding 1
+  edge 24 -> 25, winding 1
+vertex 25 (42.625, 46.25) alpha 255, null partner
+  edge 23 -> 25, winding -1
+  edge 24 -> 25, winding 1
+vertex 26 (32.3906, 46.2812) alpha 255, null partner
+  edge 23 -> 26, winding 1
+  edge 26 -> 27, winding 1
+vertex 27 (28.6492, 47.0874) alpha 255, null partner
+  edge 26 -> 27, winding 1
+  edge 27 -> 29, winding 1
+vertex 28 (52.3613, 48.1387) alpha 255, null partner
+  edge 20 -> 28, winding -1
+  edge 28 -> 38, winding -1
+vertex 29 (24.3613, 48.5352) alpha 255, null partner
+  edge 27 -> 29, winding 1
+  edge 29 -> 32, winding 1
+vertex 30 (28, 49) alpha 255, null partner
+  edge 0 -> 30, winding -1
+  edge 30 -> 31, winding -1
+vertex 31 (21.5, 50.25) alpha 255, null partner
+  edge 30 -> 31, winding -1
+  edge 31 -> 33, winding -1
+vertex 32 (19.4905, 50.7856) alpha 255, null partner
+  edge 29 -> 32, winding 1
+  edge 32 -> 37, winding 1
+vertex 33 (16.6667, 51.3333) alpha 255, null partner
+  edge 31 -> 33, winding -1
+  edge 33 -> 34, winding -1
+vertex 34 (13.5, 52.25) alpha 255, null partner
+  edge 33 -> 34, winding -1
+  edge 34 -> 35, winding -1
+vertex 35 (12, 53) alpha 255, null partner
+  edge 34 -> 35, winding -1
+  edge 35 -> 36, winding -1
+vertex 36 (12.1667, 53.5833) alpha 255, null partner
+  edge 35 -> 36, winding -1
+  edge 36 -> 37, winding -1
+vertex 37 (14, 54) alpha 255, null partner
+  edge 36 -> 37, winding -1
+  edge 32 -> 37, winding 1
+vertex 38 (50, 54) alpha 255, null partner
+  edge 7 -> 38, winding 1
+  edge 28 -> 38, winding -1
+
+sorted+merged mesh:
+vertex 0 (0, 0) alpha 255, null partner
+  edge 0 -> 1, winding 1
+  edge 0 -> 30, winding -1
+vertex 1 (9, 19) alpha 255, null partner
+  edge 0 -> 1, winding 1
+  edge 1 -> 2, winding 1
+vertex 2 (18.963, 25.2346) alpha 255, null partner
+  edge 1 -> 2, winding 1
+  edge 2 -> 4, winding 1
+vertex 3 (48, 28) alpha 255, null partner
+  edge 3 -> 13, winding 1
+  edge 3 -> 5, winding -1
+vertex 4 (27.5185, 30.1605) alpha 255, null partner
+  edge 2 -> 4, winding 1
+  edge 4 -> 6, winding 1
+vertex 5 (49.2963, 32.2346) alpha 255, null partner
+  edge 3 -> 5, winding -1
+  edge 5 -> 8, winding -1
+vertex 6 (34.6667, 33.7778) alpha 255, null partner
+  edge 4 -> 6, winding 1
+  edge 6 -> 9, winding 1
+vertex 7 (20, 35) alpha 255, null partner
+  edge 7 -> 38, winding 1
+  edge 7 -> 12, winding -1
+vertex 8 (49.1852, 35.1605) alpha 255, null partner
+  edge 5 -> 8, winding -1
+  edge 8 -> 10, winding -1
+vertex 9 (40.4074, 36.0864) alpha 255, null partner
+  edge 6 -> 9, winding 1
+  edge 9 -> 11, winding 1
+vertex 10 (47.6667, 36.7778) alpha 255, null partner
+  edge 8 -> 10, winding -1
+  edge 10 -> 11, winding -1
+vertex 11 (44.7407, 37.0864) alpha 255, null partner
+  edge 9 -> 11, winding 1
+  edge 10 -> 11, winding -1
+vertex 12 (31.0918, 37.9082) alpha 255, null partner
+  edge 7 -> 12, winding -1
+  edge 12 -> 14, winding -1
+vertex 13 (47.8105, 38.0586) alpha 255, null partner
+  edge 3 -> 13, winding 1
+  edge 13 -> 19, winding 1
+vertex 14 (39.7344, 39.5156) alpha 255, null partner
+  edge 12 -> 14, winding -1
+  edge 14 -> 15, winding -1
+vertex 15 (50.375, 41.125) alpha 255, null partner
+  edge 14 -> 15, winding -1
+  edge 15 -> 16, winding -1
+vertex 16 (51.7791, 41.6116) alpha 255, null partner
+  edge 15 -> 16, winding -1
+  edge 16 -> 17, winding -1
+vertex 17 (52.7246, 42.2754) alpha 255, null partner
+  edge 16 -> 17, winding -1
+  edge 17 -> 18, winding -1
+vertex 18 (53.2336, 43.1882) alpha 255, null partner
+  edge 17 -> 18, winding -1
+  edge 18 -> 20, winding -1
+vertex 19 (47.0469, 43.5938) alpha 255, null partner
+  edge 13 -> 19, winding 1
+  edge 19 -> 21, winding 1
+vertex 20 (53.3281, 44.4219) alpha 255, null partner
+  edge 18 -> 20, winding -1
+  edge 20 -> 28, winding -1
+vertex 21 (46.3582, 45.0679) alpha 255, null partner
+  edge 19 -> 21, winding 1
+  edge 21 -> 22, winding 1
+vertex 22 (45.416, 45.8945) alpha 255, null partner
+  edge 21 -> 22, winding 1
+  edge 22 -> 24, winding 1
+vertex 23 (38.3809, 45.9492) alpha 255, null partner
+  edge 23 -> 26, winding 1
+  edge 23 -> 25, winding -1
+vertex 24 (44.1838, 46.2349) alpha 255, null partner
+  edge 22 -> 24, winding 1
+  edge 24 -> 25, winding 1
+vertex 25 (42.625, 46.25) alpha 255, null partner
+  edge 23 -> 25, winding -1
+  edge 24 -> 25, winding 1
+vertex 26 (32.3906, 46.2812) alpha 255, null partner
+  edge 23 -> 26, winding 1
+  edge 26 -> 27, winding 1
+vertex 27 (28.6492, 47.0874) alpha 255, null partner
+  edge 26 -> 27, winding 1
+  edge 27 -> 29, winding 1
+vertex 28 (52.3613, 48.1387) alpha 255, null partner
+  edge 20 -> 28, winding -1
+  edge 28 -> 38, winding -1
+vertex 29 (24.3613, 48.5352) alpha 255, null partner
+  edge 27 -> 29, winding 1
+  edge 29 -> 32, winding 1
+vertex 30 (28, 49) alpha 255, null partner
+  edge 0 -> 30, winding -1
+  edge 30 -> 31, winding -1
+vertex 31 (21.5, 50.25) alpha 255, null partner
+  edge 30 -> 31, winding -1
+  edge 31 -> 33, winding -1
+vertex 32 (19.4905, 50.7856) alpha 255, null partner
+  edge 29 -> 32, winding 1
+  edge 32 -> 37, winding 1
+vertex 33 (16.6667, 51.3333) alpha 255, null partner
+  edge 31 -> 33, winding -1
+  edge 33 -> 34, winding -1
+vertex 34 (13.5, 52.25) alpha 255, null partner
+  edge 33 -> 34, winding -1
+  edge 34 -> 35, winding -1
+vertex 35 (12, 53) alpha 255, null partner
+  edge 34 -> 35, winding -1
+  edge 35 -> 36, winding -1
+vertex 36 (12.1667, 53.5833) alpha 255, null partner
+  edge 35 -> 36, winding -1
+  edge 36 -> 37, winding -1
+vertex 37 (14, 54) alpha 255, null partner
+  edge 36 -> 37, winding -1
+  edge 32 -> 37, winding 1
+vertex 38 (50, 54) alpha 255, null partner
+  edge 7 -> 38, winding 1
+  edge 28 -> 38, winding -1
+simplifying complex polygons

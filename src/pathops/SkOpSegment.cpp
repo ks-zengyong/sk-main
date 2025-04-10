@@ -232,16 +232,16 @@ foundMatch:
 }
 
 // break the span so that the coincident part does not change the angle of the remainder
-bool SkOpSegment::addExpanded(double newT, const SkOpSpanBase* test, bool* startOver) {
+int SkOpSegment::addExpanded(double newT, const SkOpSpanBase* test, bool* startOver) {
     if (this->contains(newT)) {
-        return true;
+        return 0;
     }
     this->globalState()->resetAllocatedOpSpan();
-    FAIL_IF(!between(0, newT, 1));
+    FAIL_WITH_RETURN_IF(!between(0, newT, 1), -1);
     SkOpPtT* newPtT = this->addT(newT);
     *startOver |= this->globalState()->allocatedOpSpan();
     if (!newPtT) {
-        return false;
+        return -1;
     }
     newPtT->fPt = this->ptAtT(newT);
     SkOpPtT* oppPrev = test->ptT()->oppPrev(newPtT);
@@ -252,7 +252,7 @@ bool SkOpSegment::addExpanded(double newT, const SkOpSpanBase* test, bool* start
         writableTest->ptT()->addOpp(newPtT, oppPrev);
         writableTest->checkForCollapsedCoincidence();
     }
-    return true;
+    return 1;
 }
 
 // Please keep this in sync with debugAddT()
@@ -273,7 +273,7 @@ SkOpPtT* SkOpSegment::addT(double t, const SkPoint& pt) {
             span->init(this, prev, t, pt);
             this->debugValidate();
 #if DEBUG_ADD_T
-            SkDebugf("%s insert t=%1.9g segID=%d spanID=%d\n", __FUNCTION__, t,
+            SkDebugf("%s insert t=%1.12g segID=%d spanID=%d\n", __FUNCTION__, t,
                     span->segment()->debugID(), span->debugID());
 #endif
             span->bumpSpanAdds();
@@ -967,15 +967,17 @@ bool SkOpSegment::markAngle(int maxWinding, int sumWinding, const SkOpAngle* ang
         return false;
     }
 #if DEBUG_WINDING
-    SkOpSpanBase* last = *result;
-    if (last) {
-        SkDebugf("%s last seg=%d span=%d", __FUNCTION__,
-                last->segment()->debugID(), last->debugID());
-        if (!last->final()) {
-            SkDebugf(" windSum=");
-            SkPathOpsDebug::WindingPrintf(last->upCast()->windSum());
+    if (nullptr != result) {
+        SkOpSpanBase* last = *result;
+        if (last) {
+            SkDebugf("%s last seg=%d span=%d", __FUNCTION__,
+                    last->segment()->debugID(), last->debugID());
+            if (!last->final()) {
+                SkDebugf(" windSum=");
+                SkPathOpsDebug::WindingPrintf(last->upCast()->windSum());
+            }
+            SkDebugf("\n");
         }
-        SkDebugf("\n");
     }
 #endif
     return true;
@@ -1269,6 +1271,7 @@ bool SkOpSegment::missingCoincidence() {
 // please keep this in sync with debugMoveMultiples()
 // if a span has more than one intersection, merge the other segments' span as needed
 bool SkOpSegment::moveMultiples() {
+    bool bChanged = false;
     debugValidate();
     SkOpSpanBase* test = &fHead;
     do {
@@ -1350,8 +1353,33 @@ bool SkOpSegment::moveMultiples() {
                     goto tryNextSpan;
             foundMatch:  // merge oppTest and oppSpan
                     oppSegment->debugValidate();
-                    oppTest->mergeMatches(oppSpan);
-                    oppTest->addOpp(oppSpan);
+                    SkOpSpanBase* oppStart = oppTest->t() < oppSpan->t() ? oppTest : oppSpan;
+                    SkOpSpanBase* oppEnd = oppTest->t() < oppSpan->t() ? oppSpan : oppTest;
+                    if (oppStart->t() == 0)
+                    {
+                        oppTest = oppStart->upCast()->next();
+                        do
+                        {
+                            oppStart->mergeMatches(oppTest);
+                            oppStart->addOpp(oppTest);
+
+                            if (oppTest == oppEnd)
+                                break;
+                        } while (oppTest = oppTest->upCast()->next());
+                    }
+                    else
+                    {
+                        oppTest = oppEnd->prev();
+                        do
+                        {
+                            oppEnd->mergeMatches(oppTest);
+                            oppEnd->addOpp(oppTest);
+
+                            if (oppTest == oppStart)
+                                break;
+                        } while (oppTest = oppTest->prev());
+                    }
+                    bChanged = true;
                     oppSegment->debugValidate();
                     goto checkNextSpan;
                 }
@@ -1362,6 +1390,15 @@ bool SkOpSegment::moveMultiples() {
 checkNextSpan:
         ;
     } while ((test = test->final() ? nullptr : test->upCast()->next()));
+    if (bChanged)
+    {
+#if DEBUG_ACTIVE_SPANS
+        SkDebugf("********************************************************\n");
+        SkDebugf("moveMultiples segID=%d changed:\n", this->debugID());
+        SkPathOpsDebug::ShowActiveSpans(globalState()->contourHead());
+        SkDebugf("********************************************************\n");
+#endif
+    }
     debugValidate();
     return true;
 }

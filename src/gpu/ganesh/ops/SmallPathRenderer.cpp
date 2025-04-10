@@ -141,6 +141,7 @@ public:
 #endif
         // always use distance fields if in perspective
         fUsesDistanceField = fUsesDistanceField || viewMatrix.hasPerspective();
+        fUsesDistanceField = true;  // TODO: test
 
         fShapes.emplace_back(Entry{color, shape, viewMatrix});
 

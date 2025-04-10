@@ -1,0 +1,35 @@
+<svg viewBox="0 0 1000 1000" style="border: 1px solid black;" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(100,100)">
+    <!-- path fill="#0000ff7f" stroke="#0000ff7f" stroke-width="4" fill-rule="evenodd"
+      d=
+	  "M20 -30L0 0L250 100L200 0L20 -30ZM150 20L200 30L250 100L100 20L150 20Z"
+    / -->
+	
+	<!--path fill="none" stroke="#0000ff" stroke-width="1" fill-rule="evenodd"
+      d=
+	  "M0 0L9 19Q57 50 48 28C48 62 45 34 14 54Q6 53 28 49Z"
+    />
+	<path fill="none" stroke="#ff00ff" stroke-width="1" fill-rule="evenodd"
+      d=
+	  "M50 54C58 35 53 45 20 35Z"
+    /-->
+	
+	<!--path fill="none" stroke="#0000ff" stroke-width="1" fill-rule="evenodd"
+      d=
+	  "M0 0L8 5Q1 43 61 55Z"
+    />
+	<path fill="none" stroke="#ff00ff" stroke-width="1" fill-rule="evenodd"
+      d=
+	  "M57 14Q2 11 42 41Q22 1 40 46Z"
+    /-->
+	
+	<path fill="none" stroke="#0000ff" stroke-width="1" fill-rule="evenodd"
+      d=
+	  "M0 0Q44 39 47 1L43 23C9 36 51 13 45 12C53 41 58 49 7 23"
+    />
+	<path fill="none" stroke="#ff00ff" stroke-width="1" fill-rule="evenodd"
+      d=
+	  "M4 13M12 10L52 7C32 62 33 38 36 62"
+    />
+  </g>
+</svg>

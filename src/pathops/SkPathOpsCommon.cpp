@@ -238,8 +238,15 @@ static bool sort_angles(SkOpContourHead* contourList) {
 bool HandleCoincidence(SkOpContourHead* contourList, SkOpCoincidence* coincidence) {
     SkOpGlobalState* globalState = contourList->globalState();
     // match up points within the coincident runs
-    if (!coincidence->addExpanded(DEBUG_PHASE_ONLY_PARAMS(kIntersecting))) {
+    int nNewAddedOpSpans = coincidence->addExpanded(DEBUG_PHASE_ONLY_PARAMS(kIntersecting));
+    if (-1 == nNewAddedOpSpans) {
         return false;
+    }
+    while (nNewAddedOpSpans > 0) {
+        nNewAddedOpSpans = coincidence->addExpanded(DEBUG_COIN_ONLY_PARAMS());
+        if (-1 == nNewAddedOpSpans) {
+            return false;
+        }
     }
     // combine t values when multiple intersections occur on some segments but not others
     if (!move_multiples(contourList  DEBUG_PHASE_PARAMS(kWalking))) {
@@ -277,7 +284,7 @@ bool HandleCoincidence(SkOpContourHead* contourList, SkOpCoincidence* coincidenc
         if (!coincidence->addMissing(&added  DEBUG_COIN_PARAMS())) {
             return false;
         }
-        if (!coincidence->addExpanded(DEBUG_COIN_ONLY_PARAMS())) {
+        if (-1 == coincidence->addExpanded(DEBUG_COIN_ONLY_PARAMS())) {
             return false;
         }
         if (!move_multiples(contourList  DEBUG_COIN_PARAMS())) {
@@ -286,7 +293,7 @@ bool HandleCoincidence(SkOpContourHead* contourList, SkOpCoincidence* coincidenc
         move_nearby(contourList  DEBUG_COIN_PARAMS());
     }
     // the expanded ranges may not align -- add the missing spans
-    if (!coincidence->addExpanded(DEBUG_PHASE_ONLY_PARAMS(kWalking))) {
+    if (-1 == coincidence->addExpanded(DEBUG_PHASE_ONLY_PARAMS(kWalking))) {
         return false;
     }
     // mark spans of coincident segments as coincident
@@ -294,7 +301,7 @@ bool HandleCoincidence(SkOpContourHead* contourList, SkOpCoincidence* coincidenc
     // look for coincidence lines and curves undetected by intersection
     if (missing_coincidence(contourList  DEBUG_COIN_PARAMS())) {
         (void) coincidence->expand(DEBUG_PHASE_ONLY_PARAMS(kIntersecting));
-        if (!coincidence->addExpanded(DEBUG_COIN_ONLY_PARAMS())) {
+        if (-1 == coincidence->addExpanded(DEBUG_COIN_ONLY_PARAMS())) {
             return false;
         }
         if (!coincidence->mark(DEBUG_PHASE_ONLY_PARAMS(kWalking))) {

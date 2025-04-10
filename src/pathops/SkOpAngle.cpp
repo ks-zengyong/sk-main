@@ -538,7 +538,7 @@ bool SkOpAngle::endsIntersect(SkOpAngle* rh) {
         (*CurveIntersectRay[cVerb])(segment.pts(), segment.weight(), rays[index], &i);
         double tStart = index ? rh->fStart->t() : this->fStart->t();
         double tEnd = index ? rh->fComputedEnd->t() : this->fComputedEnd->t();
-        bool testAscends = tStart < (index ? rh->fComputedEnd->t() : this->fComputedEnd->t());
+        bool testAscends = tStart < tEnd;
         double t = testAscends ? 0 : 1;
         for (int idx2 = 0; idx2 < i.used(); ++idx2) {
             double testT = i[0][idx2];
@@ -1024,18 +1024,14 @@ void SkOpAngle::setSpans() {
         fSide = -tangentPart.pointDistance(fPart.fCurve[2]);  // not normalized -- compare sign only
         } break;
     case SkPath::kCubic_Verb: {
-        SkLineParameters tangentPart;
-        (void) tangentPart.cubicPart(fPart.fCurve.fCubic);
-        fSide = -tangentPart.pointDistance(fPart.fCurve[3]);
         double testTs[4];
         // OPTIMIZATION: keep inflections precomputed with cubic segment?
         int testCount = SkDCubic::FindInflections(pts, testTs);
         double startT = fStart->t();
         double endT = fEnd->t();
-        double limitT = endT;
         int index;
         for (index = 0; index < testCount; ++index) {
-            if (!::between(startT, testTs[index], limitT)) {
+            if (!::between(startT, testTs[index], endT)) {
                 testTs[index] = -1;
             }
         }
@@ -1049,6 +1045,8 @@ void SkOpAngle::setSpans() {
             ++index;
         }
         index <<= 1;
+        SkLineParameters testPart;
+        testPart.cubicEndPoints(fPart.fCurve.fCubic);
         for (; index < testCases; ++index) {
             int testIndex = index >> 1;
             double testT = testTs[testIndex];
@@ -1057,8 +1055,6 @@ void SkOpAngle::setSpans() {
             }
             // OPTIMIZE: could avoid call for t == startT, endT
             SkDPoint pt = dcubic_xy_at_t(pts, segment->weight(), testT);
-            SkLineParameters testPart;
-            testPart.cubicEndPoints(fPart.fCurve.fCubic);
             double testSide = testPart.pointDistance(pt);
             if (fabs(bestSide) < fabs(testSide)) {
                 bestSide = testSide;

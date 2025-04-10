@@ -437,31 +437,36 @@ bool SkOpCoincidence::addEndMovedSpans(DEBUG_COIN_DECLARE_ONLY_PARAMS()) {
 /* Please keep this in sync with debugAddExpanded */
 // for each coincident pair, match the spans
 // if the spans don't match, add the missing pt to the segment and loop it in the opposite span
-bool SkOpCoincidence::addExpanded(DEBUG_COIN_DECLARE_ONLY_PARAMS()) {
+int SkOpCoincidence::addExpanded(DEBUG_COIN_DECLARE_ONLY_PARAMS()) {
     DEBUG_SET_PHASE();
     SkCoincidentSpans* coin = this->fHead;
     if (!coin) {
-        return true;
+        return 0;
     }
+
+    int nNewAddedOpSpan = 0;
     do {
         const SkOpPtT* startPtT = coin->coinPtTStart();
         const SkOpPtT* oStartPtT = coin->oppPtTStart();
         double priorT = startPtT->fT;
         double oPriorT = oStartPtT->fT;
-        FAIL_IF(!startPtT->contains(oStartPtT));
+        FAIL_WITH_RETURN_IF(!startPtT->contains(oStartPtT), -1);
         SkOPASSERT(coin->coinPtTEnd()->contains(coin->oppPtTEnd()));
         const SkOpSpanBase* start = startPtT->span();
         const SkOpSpanBase* oStart = oStartPtT->span();
         const SkOpSpanBase* end = coin->coinPtTEnd()->span();
         const SkOpSpanBase* oEnd = coin->oppPtTEnd()->span();
-        FAIL_IF(oEnd->deleted());
-        FAIL_IF(!start->upCastable());
+        FAIL_WITH_RETURN_IF(oEnd->deleted(), -1);
+        FAIL_WITH_RETURN_IF(!start->upCastable(), -1);
         const SkOpSpanBase* test = start->upCast()->next();
-        FAIL_IF(!coin->flipped() && !oStart->upCastable());
+        FAIL_WITH_RETURN_IF(!coin->flipped() && !oStart->upCastable(), -1);
         const SkOpSpanBase* oTest = coin->flipped() ? oStart->prev() : oStart->upCast()->next();
-        FAIL_IF(!oTest);
+        FAIL_WITH_RETURN_IF(!oTest, -1);
         SkOpSegment* seg = start->segment();
         SkOpSegment* oSeg = oStart->segment();
+#if DEBUG_COINCIDENCE
+        SkDebugf("[%d-%d]\n", seg->debugID(), oSeg->debugID());
+#endif
         while (test != end || oTest != oEnd) {
             const SkOpPtT* containedOpp = test->ptT()->contains(oSeg);
             const SkOpPtT* containedThis = oTest->ptT()->contains(seg);
@@ -479,30 +484,35 @@ bool SkOpCoincidence::addExpanded(DEBUG_COIN_DECLARE_ONLY_PARAMS()) {
                     const SkOpSpanBase* walk = test;
                     const SkOpPtT* walkOpp;
                     do {
-                        FAIL_IF(!walk->upCastable());
+                        FAIL_WITH_RETURN_IF(!walk->upCastable(), -1);
                         walk = walk->upCast()->next();
                     } while (!(walkOpp = walk->ptT()->contains(oSeg))
                             && walk != coin->coinPtTEnd()->span());
-                    FAIL_IF(!walkOpp);
+                    FAIL_WITH_RETURN_IF(!walkOpp, -1);
                     nextT = walk->t();
                     oNextT = walkOpp->fT;
                 }
                 // use t ranges to guess which one is missing
                 double startRange = nextT - priorT;
-                FAIL_IF(!startRange);
+                FAIL_WITH_RETURN_IF(!startRange, -1);
                 double startPart = (test->t() - priorT) / startRange;
                 double oStartRange = oNextT - oPriorT;
-                FAIL_IF(!oStartRange);
+                FAIL_WITH_RETURN_IF(!oStartRange, -1);
                 double oStartPart = (oTest->t() - oPriorT) / oStartRange;
-                FAIL_IF(startPart == oStartPart);
+                FAIL_WITH_RETURN_IF(startPart == oStartPart, -1);
                 bool addToOpp = !containedOpp && !containedThis ? startPart < oStartPart
                         : !!containedThis;
                 bool startOver = false;
-                bool success = addToOpp ? oSeg->addExpanded(
+                int added = addToOpp ? oSeg->addExpanded(
                         oPriorT + oStartRange * startPart, test, &startOver)
                         : seg->addExpanded(
                         priorT + startRange * oStartPart, oTest, &startOver);
-                FAIL_IF(!success);
+                const SkOpSpanBase* oppSpan = addToOpp ? test : oTest;
+#if DEBUG_COINCIDENCE
+                SkDebugf("    opp [segID][spanID]=[%d][%d] t=%1.12g\n", oppSpan->segment()->debugID(), oppSpan->debugID(), oppSpan->t());
+#endif
+                FAIL_WITH_RETURN_IF(-1 == added, -1);
+                nNewAddedOpSpan += added;
                 if (startOver) {
                     test = start;
                     oTest = oStart;
@@ -511,7 +521,7 @@ bool SkOpCoincidence::addExpanded(DEBUG_COIN_DECLARE_ONLY_PARAMS()) {
                 oEnd = coin->oppPtTEnd()->span();
             }
             if (test != end) {
-                FAIL_IF(!test->upCastable());
+                FAIL_WITH_RETURN_IF(!test->upCastable(), -1);
                 priorT = test->t();
                 test = test->upCast()->next();
             }
@@ -520,15 +530,15 @@ bool SkOpCoincidence::addExpanded(DEBUG_COIN_DECLARE_ONLY_PARAMS()) {
                 if (coin->flipped()) {
                     oTest = oTest->prev();
                 } else {
-                    FAIL_IF(!oTest->upCastable());
+                    FAIL_WITH_RETURN_IF(!oTest->upCastable(), -1);
                     oTest = oTest->upCast()->next();
                 }
-                FAIL_IF(!oTest);
+                FAIL_WITH_RETURN_IF(!oTest, -1);
             }
 
         }
     } while ((coin = coin->next()));
-    return true;
+    return nNewAddedOpSpan;
 }
 
 // given a t span, map the same range on the coincident span
@@ -1428,7 +1438,7 @@ bool SkOpCoincidence::Ordered(const SkOpSegment* coinSeg, const SkOpSegment* opp
         ++cPt;
         ++oPt;
     }
-    return true;
+    return coinSeg < oppSeg;
 }
 
 bool SkOpCoincidence::overlap(const SkOpPtT* coin1s, const SkOpPtT* coin1e,

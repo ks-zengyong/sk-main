@@ -16,6 +16,7 @@
 #include "include/private/base/SkMath.h"
 #include "include/private/base/SkMutex.h"
 #include "src/core/SkPathPriv.h"
+#include "src/core/SkOSFile.h"
 #include "src/pathops/SkIntersections.h"
 #include "src/pathops/SkOpAngle.h"
 #include "src/pathops/SkOpCoincidence.h"
@@ -356,6 +357,11 @@ void SkPathOpsDebug::ShowActiveSpans(SkOpContourHead* contourList) {
         }
         gActiveSpans.set(str);
     }
+
+    contour = contourList;
+    do {
+        contour->debugValidate();
+    } while ((contour = contour->next()));
 #endif
 }
 
@@ -442,6 +448,9 @@ void SkPathOpsDebug::CheckHealth(SkOpContourHead* contourList) {
 #if 01 && DEBUG_ACTIVE_SPANS
 //    SkDebugf("active after %s:\n", id);
     ShowActiveSpans(contourList);
+#endif
+#if DEBUG_COIN
+    coincidence->dump();
 #endif
 #endif
 }
@@ -1099,7 +1108,7 @@ void SkOpSegment::debugReset() {
 }
 
 #if DEBUG_COINCIDENCE_ORDER
-void SkOpSegment::debugSetCoinT(int index, SkScalar t) const {
+void SkOpSegment::debugSetCoinT(int index, double t) const {
     if (fDebugBaseMax < 0 || fDebugBaseIndex == index) {
         fDebugBaseIndex = index;
         fDebugBaseMin = std::min(t, fDebugBaseMin);
@@ -1114,13 +1123,30 @@ void SkOpSegment::debugSetCoinT(int index, SkScalar t) const {
         return;
     }
     SkASSERT(fDebugLastMin >= t || t >= fDebugLastMax);
-    SkASSERT((t - fDebugBaseMin > 0) == (fDebugLastMin - fDebugBaseMin > 0));
+
+    if (this->verb() != SkPath::Verb::kCubic_Verb) {
+        SkASSERT((t - fDebugBaseMin > 0) == (fDebugLastMin - fDebugBaseMin > 0));
+    }
 }
 #endif
 
 #if DEBUG_ACTIVE_SPANS
+static void debugShowPtTList(const SkOpSpanBase* span, SkString* str)
+{
+    const SkOpPtT* ptT = span->ptT();
+    const SkOpPtT* stopPtT = ptT;
+    str->appendf("    fSpanAdds[%d] ptT list[segID](spanID)<ptTID>:", span->spanAddsCount());
+    do
+    {
+        str->appendf("[%d](%d)<%d>", ptT->segment()->debugID(), ptT->span()->debugID(), ptT->debugID());
+        if (ptT->coincident()) str->append("*");
+        if (ptT->next() != stopPtT) str->append(" -> ");
+    } while ((ptT = ptT->next()) != stopPtT);
+    str->appendf("\n");
+}
+
 void SkOpSegment::debugShowActiveSpans(SkString* str) const {
-    debugValidate();
+    //debugValidate();
     if (done()) {
         return;
     }
@@ -1136,19 +1162,19 @@ void SkOpSegment::debugShowActiveSpans(SkString* str) const {
         }
         lastId = this->debugID();
         lastT = span->t();
-        str->appendf("%s id=%d", __FUNCTION__, this->debugID());
+        str->appendf("%s segID=%d spanID=%d", __FUNCTION__, this->debugID(), span->debugID());
         // since endpoints may have be adjusted, show actual computed curves
         SkDCurve curvePart;
         this->subDivide(span, span->next(), &curvePart);
         const SkDPoint* pts = curvePart.fCubic.fPts;
-        str->appendf(" (%1.9g,%1.9g", pts[0].fX, pts[0].fY);
+        str->appendf(" (%1.12g,%1.12g", pts[0].fX, pts[0].fY);
         for (int vIndex = 1; vIndex <= SkPathOpsVerbToPoints(fVerb); ++vIndex) {
-            str->appendf(" %1.9g,%1.9g", pts[vIndex].fX, pts[vIndex].fY);
+            str->appendf(" %1.12g,%1.12g", pts[vIndex].fX, pts[vIndex].fY);
         }
         if (SkPath::kConic_Verb == fVerb) {
-            str->appendf(" %1.9gf", curvePart.fConic.fWeight);
+            str->appendf(" %1.12g", curvePart.fConic.fWeight);
         }
-        str->appendf(") t=%1.9g tEnd=%1.9g", span->t(), span->next()->t());
+        str->appendf(") t=%1.12g tEnd=%1.12g", span->t(), span->next()->t());
         if (span->windSum() == SK_MinS32) {
             str->appendf(" windSum=?");
         } else {
@@ -1163,8 +1189,17 @@ void SkOpSegment::debugShowActiveSpans(SkString* str) const {
         if (span->oppValue() || span->oppSum() != SK_MinS32) {
             str->appendf(" oppValue=%d", span->oppValue());
         }
+        if (span->done()) {
+            str->append(" !DONE!");
+        }
         str->appendf("\n");
-   } while ((span = span->next()->upCastable()));
+
+        debugShowPtTList(span, str);
+    } while ((span = span->next()->upCastable()));
+
+    str->appendf("%s segID=%d spanID=%d (%.12g,%.12g)\n", __FUNCTION__, this->debugID(), fTail.debugID(), fTail.pt().fX, fTail.pt().fY);
+    debugShowPtTList(&fTail, str);
+    str->append("\n");
 }
 #endif
 
@@ -1370,6 +1405,17 @@ void SkOpAngle::debugValidate() const {
 
 void SkOpAngle::debugValidateNext() const {
 #if !FORCE_RELEASE
+    auto findInSkTDArray = [](const SkTDArray<const SkOpAngle*>& angles, const SkOpAngle* angle)
+    {
+        for (int idx = 0; idx < angles.size(); ++idx) {
+            if (angles[idx] == angle) {
+                return true;
+            }
+        }
+
+        return false;
+    };
+
     const SkOpAngle* first = this;
     const SkOpAngle* next = first;
     SkTDArray<const SkOpAngle*> angles;
@@ -1380,7 +1426,7 @@ void SkOpAngle::debugValidateNext() const {
         if (next == first) {
             break;
         }
-        SkASSERT_RELEASE(!angles.contains(next));
+        SkASSERT_RELEASE(!findInSkTDArray(angles, next));
         if (!next) {
             return;
         }

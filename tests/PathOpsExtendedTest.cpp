@@ -579,12 +579,12 @@ static bool innerPathOp(skiatest::Reporter* reporter, const SkPath& a, const SkP
         }
         if (PathOpsDebug::gJson) {
             json_status(expectSuccess, expectMatch, true);
-            json_path_out(out, "out", "Out", true);
+            json_path_out(out, "out", "Out", false);
         }
     }
-    if (!reporter->verbose()) {
-        return true;
-    }
+    //if (!reporter->verbose()) {
+    //    return true;
+    //}
     SkPath pathOut, scaledPathOut;
     SkRegion rgnA, rgnB, openClip, rgnOut;
     openClip.setRect({-16000, -16000, 16000, 16000});
@@ -612,6 +612,15 @@ static bool innerPathOp(skiatest::Reporter* reporter, const SkPath& a, const SkP
     int result = comparePaths(reporter, testName, pathOut, scaledPathOut, out, scaledOut, bitmap,
             a, b, shapeOp, scale, expectMatch);
     reporter->bumpTestCount();
+
+    SkPath pp1, pp2;
+    rgnA.getBoundaryPath(&pp1);
+    rgnB.getBoundaryPath(&pp2);
+    json_path_out(pp1, "pp1", "pp1", false);
+    json_path_out(pp2, "pp2", "pp2", false);
+    json_path_out(pathOut, "ppout", "ppOut", true);
+    std::fflush(PathOpsDebug::gOut);
+
     return result == 0;
 }
 

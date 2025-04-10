@@ -77,7 +77,7 @@ public:
         return angle;
     }
 
-    bool addExpanded(double newT, const SkOpSpanBase* test, bool* startOver);
+    int addExpanded(double newT, const SkOpSpanBase* test, bool* startOver);
 
     SkOpSegment* addLine(SkPoint pts[2], SkOpContour* parent) {
         SkASSERT(pts[0] != pts[1]);
@@ -178,7 +178,7 @@ public:
 
 #if DEBUG_COINCIDENCE_ORDER
     void debugResetCoinT() const;
-    void debugSetCoinT(int, SkScalar ) const;
+    void debugSetCoinT(int, double ) const;
 #endif
 
 #if DEBUG_COIN
@@ -454,11 +454,11 @@ private:
 #endif
 #if DEBUG_COINCIDENCE_ORDER
     mutable int fDebugBaseIndex;
-    mutable SkScalar fDebugBaseMin;  // if > 0, the 1st t value in this seg vis-a-vis the ref seg
-    mutable SkScalar fDebugBaseMax;
+    mutable double fDebugBaseMin;  // if > 0, the 1st t value in this seg vis-a-vis the ref seg
+    mutable double fDebugBaseMax;
     mutable int fDebugLastIndex;
-    mutable SkScalar fDebugLastMin;  // if > 0, the last t -- next t val - base has same sign
-    mutable SkScalar fDebugLastMax;
+    mutable double fDebugLastMin;  // if > 0, the last t -- next t val - base has same sign
+    mutable double fDebugLastMax;
 #endif
     SkDEBUGCODE(int fID;)
 };

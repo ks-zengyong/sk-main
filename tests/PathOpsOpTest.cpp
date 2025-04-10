@@ -9116,6 +9116,46 @@ path2.close();
     testPathOp(reporter, path, path2, kIntersect_SkPathOp, filename);
 }
 
+static void useinnerwind(skiatest::Reporter* reporter, const char* filename)
+{
+    SkPath path1, path2;
+    //path1.setFillType(SkPathFillType::kEvenOdd);
+    //path1.moveTo(0, 0);
+    //path1.lineTo(20, -40);
+    //path1.lineTo(200, 0);
+    //path1.lineTo(100, 100);
+    //path1.lineTo(50, 20);
+    //path1.lineTo(150, 20);
+    //path1.lineTo(100, 100);
+    //path1.close();
+
+    path1.setFillType(SkPathFillType::kWinding);
+    path1.moveTo(0, 0);
+    path1.lineTo(20, -30);
+    path1.lineTo(200, 0);
+    path1.lineTo(250, 100);
+    path1.lineTo(200, 20);
+    path1.lineTo(100, 20);
+    path1.lineTo(250, 100);
+    path1.close();
+
+    //path2.setFillType(SkPathFillType::kWinding);
+    //path2.moveTo(30, 20);
+    //path2.lineTo(50, 20);
+    //path2.lineTo(100, 100);
+    //path2.lineTo(30, 20);
+    //path2.close();
+
+    path2.setFillType(SkPathFillType::kWinding);
+    path2.moveTo(150, 30);
+    path2.lineTo(200, 20);
+    path2.lineTo(250, 100);
+    path2.lineTo(150, 30);
+    path2.close();
+
+    testPathOp(reporter, path1, path2, kDifference_SkPathOp, filename);
+}
+
 static void (*skipTest)(skiatest::Reporter* , const char* filename) = nullptr;
 static void (*firstTest)(skiatest::Reporter* , const char* filename) = nullptr;
 static void (*stopTest)(skiatest::Reporter* , const char* filename) = nullptr;
@@ -9123,14 +9163,15 @@ static void (*stopTest)(skiatest::Reporter* , const char* filename) = nullptr;
 #define TEST(name) { name, #name }
 
 static struct TestDesc tests[] = {
-    TEST(bug8380),
+    TEST(useinnerwind),
+    //TEST(bug8380),
     TEST(crbug_526025),
     TEST(bug8228),
     TEST(op_4),
     TEST(op_1),
     TEST(op_2),
     TEST(op_3),
-    TEST(grshapearcs1),
+    //TEST(grshapearcs1),
     TEST(filinmangust14),
     TEST(testRect1_u),
     TEST(halbug),

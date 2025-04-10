@@ -26,7 +26,7 @@ class GrEagerVertexAllocator;
 enum class SkPathFillType;
 struct SkRect;
 
-#define TRIANGULATOR_LOGGING 0
+#define TRIANGULATOR_LOGGING 1
 #define TRIANGULATOR_WIREFRAME 0
 
 /**

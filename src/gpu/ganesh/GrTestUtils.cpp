@@ -176,7 +176,7 @@ const SkRRect& TestRRectSimple(SkRandom* random) {
 }
 
 const SkPath& TestPath(SkRandom* random) {
-    static SkPath gPath[7];
+    static SkPath gPath[8];
     static bool gOnce;
     if (!gOnce) {
         gOnce = true;
@@ -218,9 +218,17 @@ const SkPath& TestPath(SkRandom* random) {
                                   .lineTo(0.0f, 10.0f)
                                   .close()
                                   .detach();
+
+        // sdf
+        gPath[7] = SkPathBuilder(SkPathFillType::kEvenOdd)
+            .moveTo(0.0f, 0.0f)
+            .quadTo(10.f, 0.0f, 10.f, 10.f)
+            .quadTo(10.f, 20.f, 0.0f, 20.0f)
+            .close()
+            .detach();
     }
 
-    return gPath[random->nextULessThan(static_cast<uint32_t>(std::size(gPath)))];
+    return gPath[7/*random->nextULessThan(static_cast<uint32_t>(std::size(gPath)))*/];
 }
 
 const SkPath& TestPathConvex(SkRandom* random) {

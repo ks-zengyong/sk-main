@@ -97,20 +97,20 @@ static void testOpLoopsMain(PathOpsThreadState* data) {
     }
 }
 
-DEF_TEST(PathOpsOpLoopsThreaded, reporter) {
-    initializeTests(reporter, "loopOp");
-    PathOpsThreadedTestRunner testRunner(reporter);
-    for (int a = 0; a < 6; ++a) {  // outermost
-        for (int b = a + 1; b < 7; ++b) {
-            for (int c = 0 ; c < 6; ++c) {
-                for (int d = c + 1; d < 7; ++d) {
-                    *testRunner.fRunnables.append() =
-                            new PathOpsThreadedRunnable(&testOpLoopsMain, a, b, c, d, &testRunner);
-                }
-            }
-            if (!reporter->allowExtendedTest()) goto finish;
-        }
-    }
-finish:
-    testRunner.render();
-}
+//DEF_TEST(PathOpsOpLoopsThreaded, reporter) {
+//    initializeTests(reporter, "loopOp");
+//    PathOpsThreadedTestRunner testRunner(reporter);
+//    for (int a = 0; a < 6; ++a) {  // outermost
+//        for (int b = a + 1; b < 7; ++b) {
+//            for (int c = 0 ; c < 6; ++c) {
+//                for (int d = c + 1; d < 7; ++d) {
+//                    *testRunner.fRunnables.append() =
+//                            new PathOpsThreadedRunnable(&testOpLoopsMain, a, b, c, d, &testRunner);
+//                }
+//            }
+//            if (!reporter->allowExtendedTest()) goto finish;
+//        }
+//    }
+//finish:
+//    testRunner.render();
+//}

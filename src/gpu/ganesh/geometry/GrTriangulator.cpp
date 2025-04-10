@@ -209,6 +209,15 @@ static bool recursive_edge_intersect(const Line& u, SkPoint u0, SkPoint u1,
     // This saves us doing the divide below unless absolutely necessary.
     if (denom > 0.0 ? (sNumer < 0.0 || sNumer > denom || tNumer < 0.0 || tNumer > denom)
                     : (sNumer > 0.0 || sNumer < denom || tNumer > 0.0 || tNumer < denom)) {
+        //if (abs(u.dist(v0)) < 0.00001)
+        //{
+        //    p->fX = v0.fX;
+        //    p->fY = v0.fY;
+
+        //    *s = sNumer / denom;
+        //    *t = 0;
+        //    return true;
+        //}
         return false;
     }
 
@@ -877,7 +886,7 @@ bool GrTriangulator::mergeEdgesAbove(Edge* edge, Edge* other, EdgeList* activeEd
         return false;
     }
     if (coincident(edge->fTop->fPoint, other->fTop->fPoint)) {
-        TESS_LOG("merging coincident above edges (%g, %g) -> (%g, %g)\n",
+        TESS_LOG("merging coincident above edges (%1.9g, %1.9g) -> (%1.9g, %1.9g)\n",
                  edge->fTop->fPoint.fX, edge->fTop->fPoint.fY,
                  edge->fBottom->fPoint.fX, edge->fBottom->fPoint.fY);
         if (!rewind(activeEdges, current, edge->fTop, c)) {
@@ -912,7 +921,7 @@ bool GrTriangulator::mergeEdgesBelow(Edge* edge, Edge* other, EdgeList* activeEd
         return false;
     }
     if (coincident(edge->fBottom->fPoint, other->fBottom->fPoint)) {
-        TESS_LOG("merging coincident below edges (%g, %g) -> (%g, %g)\n",
+        TESS_LOG("merging coincident below edges (%1.9g, %1.9g) -> (%1.9g, %1.9g)\n",
                  edge->fTop->fPoint.fX, edge->fTop->fPoint.fY,
                  edge->fBottom->fPoint.fX, edge->fBottom->fPoint.fY);
         if (!rewind(activeEdges, current, edge->fTop, c)) {
@@ -999,7 +1008,7 @@ GrTriangulator::BoolFail GrTriangulator::splitEdge(
     if (!edge->fTop || !edge->fBottom || v == edge->fTop || v == edge->fBottom) {
         return BoolFail::kFalse;
     }
-    TESS_LOG("splitting edge (%g -> %g) at vertex %g (%g, %g)\n",
+    TESS_LOG("splitting edge (%1.9g -> %1.9g) at vertex %g (%1.9g, %1.9g)\n",
              edge->fTop->fID, edge->fBottom->fID, v->fID, v->fPoint.fX, v->fPoint.fY);
     Vertex* top;
     Vertex* bottom;
@@ -1110,7 +1119,7 @@ Edge* GrTriangulator::makeConnectingEdge(Vertex* prev, Vertex* next, EdgeType ty
 
 void GrTriangulator::mergeVertices(Vertex* src, Vertex* dst, VertexList* mesh,
                                    const Comparator& c) const {
-    TESS_LOG("found coincident verts at %g, %g; merging %g into %g\n",
+    TESS_LOG("found coincident verts at %1.9g, %1.9g; merging %g into %g\n",
              src->fPoint.fX, src->fPoint.fY, src->fID, dst->fID);
     dst->fAlpha = std::max(src->fAlpha, dst->fAlpha);
     if (src->fPartner) {
@@ -1196,7 +1205,7 @@ void GrTriangulator::computeBisector(Edge* edge1, Edge* edge2, Vertex* v) const 
     if (line1.intersect(line2, &p)) {
         uint8_t alpha = edge1->fType == EdgeType::kOuter ? 255 : 0;
         v->fPartner = fAlloc->make<Vertex>(p, alpha);
-        TESS_LOG("computed bisector (%g,%g) alpha %d for vertex %g\n", p.fX, p.fY, alpha, v->fID);
+        TESS_LOG("computed bisector (%1.9g,%1.9g) alpha %d for vertex %g\n", p.fX, p.fY, alpha, v->fID);
     }
 }
 
@@ -1215,7 +1224,7 @@ GrTriangulator::BoolFail GrTriangulator::checkForIntersection(
     }
     if (left->intersect(*right, &p, &alpha) && p.isFinite()) {
         Vertex* v;
-        TESS_LOG("found intersection, pt is %g, %g\n", p.fX, p.fY);
+        TESS_LOG("found intersection, pt is (%1.9g, %1.9g)\n", p.fX, p.fY);
         Vertex* top = *current;
         // If the intersection point is above the current vertex, rewind to the vertex above the
         // intersection.
@@ -1278,14 +1287,14 @@ void GrTriangulator::sanitizeContours(VertexList* contours, int contourCnt) cons
             Vertex* next = v->fNext;
             Vertex* nextWrap = next ? next : contour->fHead;
             if (coincident(prev->fPoint, v->fPoint)) {
-                TESS_LOG("vertex %g,%g coincident; removing\n", v->fPoint.fX, v->fPoint.fY);
+                TESS_LOG("vertex %1.9g,%1.9g coincident; removing\n", v->fPoint.fX, v->fPoint.fY);
                 contour->remove(v);
             } else if (!v->fPoint.isFinite()) {
-                TESS_LOG("vertex %g,%g non-finite; removing\n", v->fPoint.fX, v->fPoint.fY);
+                TESS_LOG("vertex %1.9g,%1.9g non-finite; removing\n", v->fPoint.fX, v->fPoint.fY);
                 contour->remove(v);
             } else if (!fPreserveCollinearVertices &&
                        Line(prev->fPoint, nextWrap->fPoint).dist(v->fPoint) == 0.0) {
-                TESS_LOG("vertex %g,%g collinear; removing\n", v->fPoint.fX, v->fPoint.fY);
+                TESS_LOG("vertex %1.9g,%1.9g collinear; removing\n", v->fPoint.fX, v->fPoint.fY);
                 contour->remove(v);
             } else {
                 prev = v;
@@ -1397,9 +1406,9 @@ static void merge_sort(VertexList* vertices) {
 #if TRIANGULATOR_LOGGING
 void VertexList::dump() const {
     for (Vertex* v = fHead; v; v = v->fNext) {
-        TESS_LOG("vertex %g (%g, %g) alpha %d", v->fID, v->fPoint.fX, v->fPoint.fY, v->fAlpha);
+        TESS_LOG("vertex %g (%1.9g, %1.9g) alpha %d", v->fID, v->fPoint.fX, v->fPoint.fY, v->fAlpha);
         if (Vertex* p = v->fPartner) {
-            TESS_LOG(", partner %g (%g, %g) alpha %d\n",
+            TESS_LOG(", partner %g (%1.9g, %1.9g) alpha %d\n",
                     p->fID, p->fPoint.fX, p->fPoint.fY, p->fAlpha);
         } else {
             TESS_LOG(", null partner\n");
@@ -1486,7 +1495,7 @@ GrTriangulator::SimplifyResult GrTriangulator::simplify(VertexList* mesh,
         Edge* rightEnclosingEdge;
         bool restartChecks;
         do {
-            TESS_LOG("\nvertex %g: (%g,%g), alpha %d\n",
+            TESS_LOG("\nvertex %g: (%1.9g,%1.9g), alpha %d\n",
                      v->fID, v->fPoint.fX, v->fPoint.fY, v->fAlpha);
             restartChecks = false;
             FindEnclosingEdges(*v, activeEdges, &leftEnclosingEdge, &rightEnclosingEdge);
@@ -1565,7 +1574,7 @@ std::tuple<Poly*, bool> GrTriangulator::tessellate(const VertexList& vertices, c
             continue;
         }
 #if TRIANGULATOR_LOGGING
-        TESS_LOG("\nvertex %g: (%g,%g), alpha %d\n", v->fID, v->fPoint.fX, v->fPoint.fY, v->fAlpha);
+        TESS_LOG("\nvertex %g: (%1.9g,%1.9g), alpha %d\n", v->fID, v->fPoint.fX, v->fPoint.fY, v->fAlpha);
 #endif
         Edge* leftEnclosingEdge;
         Edge* rightEnclosingEdge;
