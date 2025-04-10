@@ -3275,6 +3275,17 @@ if (skia_enable_tools) {
     deps = [ ":skia" ]
   }
 
+  test_app("demo") {
+    sources = [
+      "example/HelloWorld.h",
+      "example/HelloWorld.cpp"
+    ]
+    deps = [
+      ":skia",
+      ":sk_app", 
+    ]
+  }
+
   group("modules_testonly") {
     testonly = true
     deps = []
