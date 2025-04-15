@@ -14,10 +14,18 @@
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     var side = 0;
-    function drawLabel(p, angle=0, color="")
+    function drawLabel(p, angle=0, color="", lbl = [NaN, NaN])
     {
         ctx.font = '10px Arial';
-        var text = '(' + p[0] + ',' + p[1] + ')';
+        var text;
+        if ((lbl[0] != NaN) && (lbl[1] != NaN))
+        {
+            text = '(' + lbl[0] + ', ' + lbl[1] + ')';
+        }
+        else
+        {
+            text = '(' + p[0] + ', ' + p[1] + ')';
+        }
         ctx.save();
         if (color != "")
         {
@@ -40,11 +48,20 @@
         side += 1;
     }
 
-    function drawPoint(p)
+    function drawPoint(p, color="")
     {
+        ctx.save();
+
+        if (color != "")
+        {
+            ctx.fillStyle = color;
+            ctx.strokeStyle = color;
+        }
         var r = 2;
         var len = r * 2;
         ctx.fillRect(p[0] - r, p[1] - r, len, len);
+
+        ctx.restore();
     }
 
     function drawLine(s, e)
@@ -738,10 +755,75 @@
         P(                  40,                   46);
     }
 
-    ctx.lineWidth = 1;
-    ctx.translate(10, 10);
+    // ctx.lineWidth = 1;
+    // ctx.translate(10, 10);
     // draw_skbug_328687149();
-    draw_skbug_328687149_II();
+    // draw_skbug_328687149_II();
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    function draw_crbug_884166()
+    {
+        function T(num)
+        {
+            var scale = 100;
+            return num * scale;
+        }
+
+        function M(x, y)
+        {
+            ctx.moveTo(T(x - 160), T(y-280));
+        }
+
+        function L(x, y)
+        {
+            ctx.lineTo(T(x - 160), T(y - 280));
+        }
+
+        function P(x, y, a = 0, color = "")
+        {
+            drawPoint([T(x - 160), T(y - 280)], color);
+            drawLabel([T(x - 160).toFixed(3), T(y - 280).toFixed(3)], a, color, [x.toFixed(6), y.toFixed(6)]);
+        }
+
+        ctx.fillStyle = 'red';
+        ctx.strokeStyle = 'red';
+
+        ctx.beginPath();
+        M(153.25, 280.75);
+        L(161.75, 281.75);
+        L(164.25, 282.00);
+        L(  0.00, 276.00);
+        L(161.50,   0.00);
+        L(286.25, 231.25);
+        L(163.75, 282.00);
+        L(150.00, 280.00);
+        ctx.stroke();
+
+        P(153.25, 280.75, 0, "green");
+        P(161.75, 281.75, 0, "red");
+        P(164.25, 282.00, 0, "green");
+        P(  0.00, 276.00);
+        P(161.50,   0.00);
+        P(286.25, 231.25);
+        P(163.75, 282.00, 45, "blue");
+        P(150.00, 280.00, 45, "blue");
+
+        P(163.582321, 281.975616, 90, "gray");
+        P(162.649994, 281.839996, 90, "gray");
+        P(163.790512, 281.983215, 90, "gray");
+        P(163.847229, 281.959717, 90, "gray");
+        
+        // ctx.fillStyle = 'blue';
+        // ctx.strokeStyle = 'blue';
+        // ctx.beginPath();
+        
+        // ctx.stroke();
+    }
+
+    ctx.lineWidth = 1;
+    ctx.translate(1100, 1000);
+    draw_crbug_884166();
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     function drawQuadPair(p0, p1, p2, p3, p4, p5)
